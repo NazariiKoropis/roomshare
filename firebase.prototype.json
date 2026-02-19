@@ -1,0 +1,72 @@
+{
+    "users": {
+        "user_1": {
+            "displayName": "VasilCrutoi",
+            "email": "vasil@crutoi.com",
+            "firstName": "Vasil",
+            "lastName": "Crutoi",
+            "birthDate": 101321312000,
+            "photoUrl": "https://ui-avatars.com/api/?name=Vasil+Crutoi",
+            "role": "user",
+            "contacts": {
+                "phone": "+380991234567",
+                "telegram": "@vasil_c"
+            },
+            "registeredAt": 1708351200000
+        }
+    },
+    "rooms": {
+        "room_1": {
+            "userID": "user_1",
+            "title": "Cool room",
+            "desc": "MY ROOMMM",
+            "price": 5000,
+            "slug": "cool-room",
+            "status": "active",
+            "location": {
+                "city": "Lviv",
+                "address": "Olgi 10",
+                "lat": 15,
+                "lng": 15
+            },
+            "amenities": [
+                "WiFi",
+                "Balcony"
+            ],
+            "createdAt": 1708351200000
+        }
+    },
+    "resumes": {
+        "resume_1": {
+            "userID": "user_2",
+            "title": "Шукаю підселення",
+            "desc": "Працюю, не курю, шукаю адекватних сусідів",
+            "budget": 6000,
+            "city": "Lviv",
+            "status": "active",
+            "createdAt": 1708355000000
+        }
+    },
+    "requests": {
+        "request_1": {
+            "userId_sent": "user_2",
+            "userId_received": "user_1",
+            "targetType": "room",
+            "targetID": "room_1",
+            "message": "Привіт, ще актуально?",
+            "status": "pending",
+            "createdAt": 1708360000000
+        }
+    },
+    "reports": {
+        "report_1": {
+            "reporterID": "user_2",
+            "targetType": "room",
+            "targetID": "room_1",
+            "title": "scam",
+            "desc": "'cause I wanna do it",
+            "status": "open",
+            "createdAt": 1708365000000
+        }
+    }
+}

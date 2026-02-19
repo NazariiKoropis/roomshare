@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+@use "./variables" as *;
+@use "./mixins" as *;
+@use "./reset";
+
+*:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+    border-radius: $border-radius-sm;
+}
+
+::selection {
+    background-color: var(--accent-primary);
+    color: var(--text-inverse);
+}
+
+body {
+    font-family: $font-primary;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+
+    font-size: $fz-md;
+
+    line-height: $lh-base;
+    font-weight: $fw-regular;
+    letter-spacing: 0;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--bg-surface-light);
+    border-radius: $border-radius;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-hover);
+}

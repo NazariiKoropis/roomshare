@@ -1,0 +1,79 @@
+:root {
+    // --- Golden Twilight Theme (Default Dark) ---
+
+    // 1. Backgrounds & Surfaces
+    --bg-main: #000814;
+    --bg-surface: #001d3d;
+    --bg-surface-light: #003566;
+
+    // 2. Accents (Брендові кольори)
+    --accent-primary: #ffc300;
+    --accent-hover: #ffd60a;
+    --accent-active: #e6b000;
+
+    // 3. UI Elements (Borders, Dividers)
+    --border-color: #003566; // Збігається з surface-light, або можна зробити окремо
+    --border-hover: #ffc300;
+
+    // 4. Text Colors
+    --text-primary: #ffffff;
+    --text-secondary: #a0aec0; // Світло-сірий для описів
+    --text-muted: #4b5563; // Темніший сірий для неактивних елементів чи плейсхолдерів
+    --text-inverse: #000814; // Темний текст (наприклад, на жовтій кнопці)
+
+    // 5. States (Успіх, помилка, попередження - для валідації форм та алертів)
+    --error: #ef4444;
+    --error-bg: rgba(239, 68, 68, 0.1);
+    --success: #10b981;
+    --warning: #f59e0b;
+}
+
+[data-theme="light"] {
+    --bg-main: #f8fafc;
+    --bg-surface: #ffffff;
+    --bg-surface-light: #e2e8f0;
+
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+    --text-inverse: #ffffff;
+}
+
+// ==========================================
+// SCSS Variables
+// ==========================================
+
+// --- Typography ---
+$font-primary: "Inter", sans-serif;
+
+// Font Sizes (fz) - Масштабована шкала
+$fz-xs: 12px;
+$fz-sm: 14px;
+$fz-base: 16px;
+$fz-md: 18px; // Основний текст
+$fz-lg: 20px;
+$fz-xl: 24px; // Заголовки карток
+$fz-2xl: 32px; // Заголовки секцій
+$fz-3xl: 48px; // Головний заголовок сторінки
+
+// Font Weights
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-semibold: 600;
+$fw-bold: 700;
+
+// Line Heights (lh)
+$lh-tight: 1.2; // Для заголовків
+$lh-base: 1.5; // Для звичайного тексту (найкраще для читабельності)
+$lh-loose: 1.8; // Для довгих статей/описів
+
+// --- Spacing & Radius ---
+$border-radius-sm: 4px;
+$border-radius: 8px; // Базовий
+$border-radius-lg: 12px; // Великі блоки
+$border-radius-round: 50%; // Для аватарок
+
+// --- Breakpoints ---
+$mobile: 480px;
+$tablet: 768px;
+$laptop: 1024px;
+$desktop: 1440px;
