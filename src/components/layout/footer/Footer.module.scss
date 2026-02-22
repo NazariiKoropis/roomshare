@@ -6,9 +6,13 @@
 }
 
 .footer {
-    border-top: 1px solid var(--bg-surface-light);
+    background-color: transparent;
+    border-top: 1px solid var(--border-color);
     background-color: var(--bg-main);
     padding-top: 20px;
+    transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease;
 }
 
 .footerTop {
@@ -78,7 +82,7 @@
 }
 
 .footerBottom {
-    border-top: 1px solid var(--bg-surface-light);
+    border-top: 1px solid var(--border-color);
     padding: 12px 0;
     text-align: center;
 

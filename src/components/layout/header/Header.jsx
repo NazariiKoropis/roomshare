@@ -86,7 +86,6 @@ function Header() {
                 className={({ isActive }) =>
                   clsx(styles.userLogo, isActive && styles['userLogo--active'])
                 }
-                onClick={() => setAuth(!isAuth)}
               >
                 <UserIcon width={32} height={32} />
                 <span>Мій профіль</span>
@@ -98,7 +97,6 @@ function Header() {
                   buttonStyles.button,
                   buttonStyles[`button--primary`],
                 )}
-                onClick={() => setAuth(!isAuth)}
               >
                 Login
               </NavLink>
@@ -139,6 +137,13 @@ function Header() {
         </nav>
 
         <div className={styles.mobileAuth}>
+          <button
+            onClick={toggleTheme}
+            className={styles.themeToggle}
+            aria-label="Toggle theme"
+          >
+            {theme === 'light' ? '🌙' : '☀️'}
+          </button>
           {isAuth ? (
             <NavLink
               to="/profile"
@@ -154,8 +159,8 @@ function Header() {
               className={clsx(
                 buttonStyles.button,
                 buttonStyles['button--primary'],
+                buttonStyles['button-fullwidth'],
               )}
-              onClick={closeMenu}
             >
               Login
             </NavLink>

@@ -1,0 +1,88 @@
+@use "./../../../assets/styles/variables" as *;
+@use "./../../../assets/styles/mixins" as *;
+
+.inputWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    &:focus-within {
+        .label {
+            color: var(--accent-hover);
+            border-color: var(--accent-hover);
+        }
+    }
+}
+
+.label {
+    font-size: $fz-lg;
+    font-weight: $fw-semibold;
+    color: var(--text-primary);
+    padding-bottom: 4px;
+    border-bottom: 1px solid transparent;
+    transition:
+        color 0.3s,
+        border-color 0.3s;
+}
+
+.input {
+    background-color: inherit;
+
+    border: 2px solid var(--text-primary);
+    color: var(--text-primary);
+    font-size: $fz-md;
+    border-radius: $border-radius;
+    padding: 20px 40px;
+
+    transition:
+        border-color 0.3s,
+        box-shadow 0.3s;
+
+    &::placeholder {
+        color: var(--text-secondary);
+        letter-spacing: 2px;
+    }
+
+    &:focus {
+        border-color: var(--accent-primary);
+
+        box-shadow: 0 0 8px 1px var(--accent-primary);
+        outline: none;
+    }
+
+    @include laptop {
+        padding: 16px 32px;
+    }
+
+    @include tablet {
+        padding: 12px 24px;
+    }
+}
+
+.input--error {
+    border-color: var(--error);
+
+    &:focus {
+        border-color: var(--error);
+        box-shadow: 0 0 8px 1px var(--error);
+    }
+}
+
+.errorText {
+    background-color: var(--error-bg);
+    color: var(--error);
+    font-size: $fz-sm;
+    font-weight: $fw-medium;
+    margin-top: -4px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

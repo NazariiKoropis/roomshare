@@ -33,7 +33,7 @@
 }
 
 .button--primary {
-    background-color: var(--accent-active);
+    background-color: var(--accent-primary);
     color: var(--text-inverse);
 
     &:hover:not(:disabled) {

@@ -3,6 +3,7 @@ import Header from './components/layout/header/Header'
 import Footer from './components/layout/footer/Footer'
 //pages
 import Home from './pages/home/Home'
+import Login from './pages/login/login'
 
 import NotFound from './pages/notFound/NotFound'
 
@@ -17,8 +18,9 @@ function App() {
       <main>
         {' '}
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/*" element={<NotFound />}></Route>
+          <Route path="/" element={<Home />} />
+          <Route path="/*" element={<NotFound />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </main>
 
