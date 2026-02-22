@@ -1,0 +1,24 @@
+@use "./../../../assets/styles/variables" as *;
+@use "./../../../assets/styles/mixins" as *;
+
+.Container {
+    background-color: transparent;
+    margin: 0 auto;
+    max-width: $desktop;
+    width: 100%;
+    padding: 12px 24px;
+
+    @include laptop {
+        max-width: $laptop;
+        padding: 10px 20px;
+    }
+
+    @include tablet {
+        max-width: $tablet;
+        padding: 8px 18px;
+    }
+    @include mobile {
+        max-width: $mobile;
+        padding: 8px 18px;
+    }
+}

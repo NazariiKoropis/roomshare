@@ -1,17 +1,13 @@
-//styles
-import styles from './Home.module.scss'
-
 //components
 import Container from '../../components/layout/container/Container'
 
-//react
-
-function Home() {
+function NotFound() {
   return (
     <Container>
-      <h2>roomshare</h2>
+      {' '}
+      <h1>Сторінку не знайдено:(</h1>
     </Container>
   )
 }
 
-export default Home
+export default NotFound
