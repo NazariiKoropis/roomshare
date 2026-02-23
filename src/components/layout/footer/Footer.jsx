@@ -33,7 +33,7 @@ function Footer() {
           </div>
 
           <nav className={styles.navColumn}>
-            <h3 className={styles.visuallyHidden}>Навігація по сторінці</h3>
+            <h3 className={'visually-hidden'}>Навігація по сторінці</h3>
             <ul className={styles.navList}>
               {NAV_ITEMS.map((item) => (
                 <li key={item.path}>

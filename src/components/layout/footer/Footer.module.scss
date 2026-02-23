@@ -1,10 +1,6 @@
 @use "./../../../assets/styles/variables" as *;
 @use "./../../../assets/styles/mixins" as *;
 
-.visuallyHidden {
-    @include visually-hidden;
-}
-
 .footer {
     background-color: transparent;
     border-top: 1px solid var(--border-color);

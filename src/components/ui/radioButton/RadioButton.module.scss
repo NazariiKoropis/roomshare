@@ -1,0 +1,94 @@
+@use "./../../../assets/styles/variables" as *;
+@use "./../../../assets/styles/mixins" as *;
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.radioGroup {
+    display: flex;
+    justify-content: space-around;
+    gap: 24px;
+
+    @include tablet {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+.radioWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.radioInput {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.radioLabel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: $fz-md;
+    color: var(--text-primary);
+    transition: color 0.3s;
+
+    &::before {
+        content: "";
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid var(--text-secondary);
+        background-color: transparent;
+        transition:
+            border-color 0.3s,
+            border-width 0.3s;
+    }
+
+    &:hover {
+        color: var(--accent-hover);
+        &::before {
+            border-color: var(--accent-hover);
+        }
+    }
+}
+.radioInput:checked + .radioLabel {
+    color: var(--accent-primary);
+
+    &::before {
+        border-color: var(--accent-primary);
+        border-width: 6px;
+    }
+}
+
+.radioInput:focus-visible + .radioLabel::before {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
+.errorText {
+    background-color: var(--error-bg);
+    color: var(--error);
+    font-size: $fz-sm;
+    font-weight: $fw-medium;
+    margin-top: -4px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.radioGroup--error {
+    .radioLabel {
+        color: var(--error);
+        &::before {
+            border-color: var(--error);
+        }
+    }
+}

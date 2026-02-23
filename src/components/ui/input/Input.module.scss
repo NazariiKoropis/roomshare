@@ -31,7 +31,7 @@
     color: var(--text-primary);
     font-size: $fz-md;
     border-radius: $border-radius;
-    padding: 20px 40px;
+    padding: 12px 24px;
 
     transition:
         border-color 0.3s,
@@ -49,12 +49,13 @@
         outline: none;
     }
 
-    @include laptop {
-        padding: 16px 32px;
+    &::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+        filter: invert(1);
+        transition: filter 0.3s ease;
     }
-
-    @include tablet {
-        padding: 12px 24px;
+    :global([data-theme="light"]) &::-webkit-calendar-picker-indicator {
+        filter: invert(0);
     }
 }
 

@@ -1,0 +1,142 @@
+@use "./../../assets/styles/variables" as *;
+@use "./../../assets/styles/mixins" as *;
+
+.regPage {
+    display: flex;
+    min-height: 100vh;
+}
+
+.imageSection {
+    flex: 1.2;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("/src/assets/images/login/dark-theme-bag.png");
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-image: url("https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=2070&auto=format&fit=crop");
+
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        pointer-events: none;
+
+        background: linear-gradient(
+            to left,
+            var(--bg-main) 0%,
+            rgba(0, 0, 0, 0.9) 10%,
+            rgba(0, 0, 0, 0.6) 25%,
+            transparent 50%
+        );
+    }
+
+    :global([data-theme="light"]) & {
+        &::before {
+            opacity: 1;
+        }
+
+        &::after {
+            background: linear-gradient(
+                to left,
+                var(--bg-main) 0%,
+                rgba(255, 255, 255, 0.9) 10%,
+                rgba(255, 255, 255, 0.6) 25%,
+                transparent 50%
+            );
+        }
+    }
+
+    @include tablet {
+        display: none;
+    }
+}
+
+.formSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 24px;
+    background-color: var(--bg-main);
+}
+
+.formWrapper {
+    width: 100%;
+    max-width: 550px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @include tablet {
+        max-width: 400px;
+    }
+}
+.logoLink {
+    text-align: center;
+    .logoText {
+        font-size: $fz-md;
+        font-weight: $fw-bold;
+        .accent {
+            color: var(--accent-primary);
+        }
+    }
+}
+
+.headerText {
+    text-align: center;
+    h1 {
+        font-size: $fz-xl;
+    }
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.inputBlock {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    width: 100%;
+
+    > * {
+        flex: 1;
+    }
+
+    @include tablet {
+        flex-direction: column;
+    }
+}
+
+.loginPrompt {
+    text-align: center;
+}
+
+.regLink {
+    color: var(--accent-primary);
+    transition: color 0.3s;
+
+    &:hover {
+        color: var(--accent-hover);
+    }
+}

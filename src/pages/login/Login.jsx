@@ -4,6 +4,7 @@ import styles from './Login.module.scss'
 //components
 import Input from '../../components/ui/input/Input'
 import Button from './../../components/ui/button/Button'
+import AnimatedPage from '../../components/layout/animatedPage/AnimatedPage'
 
 import { Logo } from '../../components/ui/svg/Logo'
 //react
@@ -41,58 +42,61 @@ function Login() {
   }
 
   return (
-    <main className={styles.loginPage}>
-      <section className={styles.formSection}>
-        <div className={styles.formWrapper}>
-          <Link to="/" className={styles.logoLink}>
-            <Logo width={40} height={40} />
-            <span className={styles.logoText}>
-              room<span className={styles.accent}>Share</span>
-            </span>
-          </Link>
-
-          <div className={styles.headerText}>
-            <h1>З поверненням!</h1>
-            <p>Будь ласка, введіть свої дані для входу.</p>
-          </div>
-
-          <form className={styles.form} onSubmit={handleSubmit}>
-            <Input
-              label="Email"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
-              error={errors.email}
-              placeholder="Введіть ваш email"
-            />
-
-            <Input
-              label="Пароль"
-              name="password"
-              type="password"
-              value={formData.password}
-              onChange={handleChange}
-              error={errors.password}
-              placeholder="••••••••"
-            />
-
-            <Button type="submit" variant="primary" fullWidth>
-              Увійти
-            </Button>
-          </form>
-
-          <p className={styles.registerPrompt}>
-            Ще не маєте акаунту?{' '}
-            <Link to="/register" className={styles.regLink}>
-              Зареєструватися
+    <AnimatedPage>
+      {' '}
+      <main className={styles.loginPage}>
+        <section className={styles.formSection}>
+          <div className={styles.formWrapper}>
+            <Link to="/" className={styles.logoLink}>
+              <Logo width={40} height={40} />
+              <span className={styles.logoText}>
+                room<span className={styles.accent}>Share</span>
+              </span>
             </Link>
-          </p>
-        </div>
-      </section>
 
-      <section className={styles.imageSection}></section>
-    </main>
+            <div className={styles.headerText}>
+              <h1>З поверненням!</h1>
+              <p>Будь ласка, введіть свої дані для входу.</p>
+            </div>
+
+            <form className={styles.form} onSubmit={handleSubmit}>
+              <Input
+                label="Email"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+                error={errors.email}
+                placeholder="Введіть ваш email"
+              />
+
+              <Input
+                label="Пароль"
+                name="password"
+                type="password"
+                value={formData.password}
+                onChange={handleChange}
+                error={errors.password}
+                placeholder="••••••••"
+              />
+
+              <Button type="submit" variant="primary" fullWidth>
+                Увійти
+              </Button>
+            </form>
+
+            <p className={styles.registerPrompt}>
+              Ще не маєте акаунту?{' '}
+              <Link to="/register" className={styles.regLink}>
+                Зареєструватися
+              </Link>
+            </p>
+          </div>
+        </section>
+
+        <section className={styles.imageSection}></section>
+      </main>{' '}
+    </AnimatedPage>
   )
 }
 

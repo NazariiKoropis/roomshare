@@ -8,6 +8,7 @@
             "birthDate": 101321312000,
             "photoUrl": "https://ui-avatars.com/api/?name=Vasil+Crutoi",
             "role": "user",
+            "gender": "male",
             "contacts": {
                 "phone": "+380991234567",
                 "telegram": "@vasil_c"
