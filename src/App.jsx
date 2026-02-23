@@ -3,7 +3,7 @@ import Header from './components/layout/header/Header'
 import Footer from './components/layout/footer/Footer'
 //pages
 import Home from './pages/home/Home'
-import Login from './pages/login/login'
+import Login from './pages/login/Login'
 
 import NotFound from './pages/notFound/NotFound'
 
