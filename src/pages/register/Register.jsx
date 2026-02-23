@@ -115,7 +115,7 @@ function Register() {
 
   return (
     <AnimatedPage>
-      <main className={styles.regPage}>
+      <div className={styles.regPage}>
         <section className={styles.imageSection}></section>
 
         <section className={styles.formSection}>
@@ -255,7 +255,7 @@ function Register() {
             </p>
           </div>
         </section>
-      </main>
+      </div>
     </AnimatedPage>
   )
 }

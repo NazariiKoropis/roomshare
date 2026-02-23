@@ -44,7 +44,7 @@ function Login() {
   return (
     <AnimatedPage>
       {' '}
-      <main className={styles.loginPage}>
+      <div className={styles.loginPage}>
         <section className={styles.formSection}>
           <div className={styles.formWrapper}>
             <Link to="/" className={styles.logoLink}>
@@ -95,7 +95,7 @@ function Login() {
         </section>
 
         <section className={styles.imageSection}></section>
-      </main>{' '}
+      </div>{' '}
     </AnimatedPage>
   )
 }
