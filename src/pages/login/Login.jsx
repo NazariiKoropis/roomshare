@@ -5,24 +5,30 @@ import styles from './Login.module.scss'
 import Input from '../../components/ui/input/Input'
 import Button from './../../components/ui/button/Button'
 import AnimatedPage from '../../components/layout/animatedPage/AnimatedPage'
-
 import { Logo } from '../../components/ui/svg/Logo'
+
 //react
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+
+//services
+import { login } from './../../services/auth.service'
 
 function Login() {
   const [formData, setFormData] = useState({ email: '', password: '' })
   const [errors, setErrors] = useState({})
+  const [authError, setAuthError] = useState('')
+
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
-
     setErrors((prev) => ({ ...prev, [name]: '' }))
+    setAuthError('')
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     const newErrors = {}
@@ -38,12 +44,27 @@ function Login() {
       return
     }
 
-    console.log('Дані готові до відправки:', formData)
+    const { user, error } = await login(formData.email, formData.password)
+
+    if (error) {
+      setAuthError(error)
+    } else {
+      console.log('Успішний вхід:', user)
+      navigate('/')
+    }
+  }
+
+  const handleFillTestData = () => {
+    setFormData({
+      email: 'vasil@crutoi.com',
+      password: '12345678',
+    })
+    setErrors({})
+    setAuthError('')
   }
 
   return (
     <AnimatedPage>
-      {' '}
       <div className={styles.loginPage}>
         <section className={styles.formSection}>
           <div className={styles.formWrapper}>
@@ -61,7 +82,7 @@ function Login() {
 
             <form className={styles.form} onSubmit={handleSubmit}>
               <Input
-                label="Email"
+                label="Електронна пошта"
                 name="email"
                 type="email"
                 value={formData.email}
@@ -80,6 +101,27 @@ function Login() {
                 placeholder="••••••••"
               />
 
+              {authError && (
+                <div
+                  style={{
+                    color: 'var(--error)',
+                    fontSize: '14px',
+                    textAlign: 'center',
+                  }}
+                >
+                  {authError}
+                </div>
+              )}
+
+              <Button
+                type="button"
+                onClick={handleFillTestData}
+                variant="primary"
+                fullWidth
+              >
+                test admin
+              </Button>
+
               <Button type="submit" variant="primary" fullWidth>
                 Увійти
               </Button>
@@ -95,7 +137,7 @@ function Login() {
         </section>
 
         <section className={styles.imageSection}></section>
-      </div>{' '}
+      </div>
     </AnimatedPage>
   )
 }

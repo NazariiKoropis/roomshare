@@ -7,9 +7,18 @@ import Login from './pages/login/Login'
 import Register from './pages/register/Register'
 import NotFound from './pages/notFound/NotFound'
 
+//protected pages
+import UserProfile from './pages/user/userProfile/UserProfile'
+import Admin from './pages/admin/Admin'
+
 //react
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
+
+//routes
+import ProtectedRoute from './routes/ProtectedRoute'
+
+//TODO: block logined users open login and reg pages
 
 function App() {
   const location = useLocation()
@@ -24,6 +33,25 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+
+            <Route
+              path="/user"
+              element={
+                <ProtectedRoute allowedRoles={['user']}>
+                  {' '}
+                  <UserProfile />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoute allowedRoles={['admin']}>
+                  <Admin />
+                </ProtectedRoute>
+              }
+            />
 
             <Route path="/*" element={<NotFound />} />
           </Routes>

@@ -9,7 +9,7 @@ import { UserIcon } from './../../ui/svg/UserIcon'
 
 //react
 import { useState, useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 //libs
 import clsx from 'clsx'
 
@@ -19,8 +19,10 @@ const NAV_ITEMS = [
   { path: '/people', label: 'Люди' },
 ]
 
+//TODO: add logout button, roles(user and admin)
+
 function Header() {
-  const [isAuth, setAuth] = useState(false)
+  const [isAuth, setAuth] = AuthContext()
   const [isOpenBurger, setIsOpenBurger] = useState(false)
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('app-theme') || 'dark'
@@ -53,12 +55,12 @@ function Header() {
     <header className={styles.headerWrapper}>
       <Container>
         <div className={styles.header}>
-          <NavLink to="/">
+          <Link to="/">
             <Logo width={36} height={36} />
             <span className={styles.logoText}>
               room<span className={styles.accent}>Share</span>
             </span>
-          </NavLink>
+          </Link>
 
           <nav className={styles.desktopNav}>
             <ul className={styles.desktopNavList}>

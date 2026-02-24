@@ -6,7 +6,7 @@ import Container from '../container/Container'
 import { Logo } from '../../ui/svg/Logo'
 
 //react
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 
 // Виносимо статичні дані за межі компонента
 const NAV_ITEMS = [
@@ -23,12 +23,12 @@ function Footer() {
       <Container>
         <div className={styles.footerTop}>
           <div className={styles.logoColumn}>
-            <NavLink to="/" className={styles.logoLink}>
+            <Link to="/" className={styles.logoLink}>
               <Logo width={36} height={36} />
               <span className={styles.logoText}>
                 room<span className={styles.accent}>Share</span>
               </span>
-            </NavLink>
+            </Link>
             <p className={styles.slogan}>Твій ідеальний сусід вже тут.</p>
           </div>
 
@@ -37,9 +37,9 @@ function Footer() {
             <ul className={styles.navList}>
               {NAV_ITEMS.map((item) => (
                 <li key={item.path}>
-                  <NavLink to={item.path} className={styles.navLink}>
+                  <Link to={item.path} className={styles.navLink}>
                     {item.label}
-                  </NavLink>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -49,32 +49,32 @@ function Footer() {
             <h3 className={styles.columnTitle}>Контакти</h3>
             <ul className={styles.addressList}>
               <li>
-                <a
+                <Link
                   href="mailto:info@roomshare.ua"
                   className={styles.addressLink}
                 >
                   info@roomshare.ua
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="https://instagram.com"
                   target="_blank"
                   rel="noreferrer"
                   className={styles.addressLink}
                 >
                   Instagram
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="https://t.me"
                   target="_blank"
                   rel="noreferrer"
                   className={styles.addressLink}
                 >
                   Telegram
-                </a>
+                </Link>
               </li>
             </ul>
           </address>

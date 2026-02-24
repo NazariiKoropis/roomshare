@@ -19,6 +19,8 @@ const genderOptions = [
   { label: 'Жінка', value: 'female' },
 ]
 
+//TODO: add register method
+
 function Register() {
   const [formData, setFormData] = useState({
     email: '',
@@ -37,7 +39,7 @@ function Register() {
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
-    // Очищаємо помилку при вводі
+
     setErrors((prev) => ({ ...prev, [name]: '' }))
   }
 

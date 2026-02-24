@@ -1,13 +1,13 @@
 {
     "users": {
-        "user_1": {
+        "dxzF6jjSDDM9wYvs6oHNuWY6tJm2": {
             "displayName": "VasilCrutoi",
             "email": "vasil@crutoi.com",
             "firstName": "Vasil",
             "lastName": "Crutoi",
             "birthDate": 101321312000,
             "photoUrl": "https://ui-avatars.com/api/?name=Vasil+Crutoi",
-            "role": "user",
+            "role": "admin",
             "gender": "male",
             "contacts": {
                 "phone": "+380991234567",
