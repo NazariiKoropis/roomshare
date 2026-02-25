@@ -13,17 +13,23 @@ import { NavLink, Link } from 'react-router-dom'
 //libs
 import clsx from 'clsx'
 
+//context
+import { useAuth } from './../../../context/AuthContext'
+
 const NAV_ITEMS = [
   { path: '/', label: 'Головна' },
   { path: '/rooms', label: 'Кімнати' },
   { path: '/people', label: 'Люди' },
 ]
 
-//TODO: add logout button, roles(user and admin)
-
 function Header() {
-  const [isAuth, setAuth] = AuthContext()
+  const { currentUser, userRole } = useAuth()
   const [isOpenBurger, setIsOpenBurger] = useState(false)
+
+  const pathToProfile = `/${userRole}`
+
+  const isLogined = !!currentUser
+
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('app-theme') || 'dark'
   })
@@ -55,7 +61,7 @@ function Header() {
     <header className={styles.headerWrapper}>
       <Container>
         <div className={styles.header}>
-          <Link to="/">
+          <Link to="/" onClick={closeMenu}>
             <Logo width={36} height={36} />
             <span className={styles.logoText}>
               room<span className={styles.accent}>Share</span>
@@ -82,9 +88,9 @@ function Header() {
             >
               {theme === 'light' ? '🌙' : '☀️'}
             </button>
-            {isAuth ? (
+            {isLogined ? (
               <NavLink
-                to="/profile"
+                to={pathToProfile}
                 className={({ isActive }) =>
                   clsx(styles.userLogo, isActive && styles['userLogo--active'])
                 }
@@ -120,6 +126,7 @@ function Header() {
         </div>
       </Container>
 
+      {/* МОБІЛЬНЕ МЕНЮ */}
       <div
         className={clsx(
           styles.mobileMenu,
@@ -130,7 +137,11 @@ function Header() {
           <ul>
             {NAV_ITEMS.map((item) => (
               <li key={item.path}>
-                <NavLink to={item.path} className={getNavLinkClass}>
+                <NavLink
+                  to={item.path}
+                  className={getNavLinkClass}
+                  onClick={closeMenu}
+                >
                   {item.label}
                 </NavLink>
               </li>
@@ -146,10 +157,13 @@ function Header() {
           >
             {theme === 'light' ? '🌙' : '☀️'}
           </button>
-          {isAuth ? (
+
+          {isLogined ? (
             <NavLink
-              to="/profile"
-              className={styles.userLogo}
+              to={pathToProfile}
+              className={({ isActive }) =>
+                clsx(styles.userLogo, isActive && styles['userLogo--active'])
+              }
               onClick={closeMenu}
             >
               <UserIcon width={32} height={32} />
@@ -157,6 +171,7 @@ function Header() {
             </NavLink>
           ) : (
             <NavLink
+              onClick={closeMenu}
               to="/login"
               className={clsx(
                 buttonStyles.button,
