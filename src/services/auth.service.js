@@ -5,9 +5,12 @@ import {
     updateProfile,
 } from "firebase/auth"
 
-import { auth } from './../firebase/firebase'
+// ДОДАНО: імпорти для роботи з Realtime Database
+import { ref, set } from 'firebase/database'
+// ДОДАНО: імпортуємо database з твого конфігу
+import { auth, database } from './../firebase/firebase'
 
-//errors
+// Обробник помилок
 const mapAuthCodeToMessage = (errorCode) => {
     switch (errorCode) {
         case 'auth/email-already-in-use':
@@ -28,7 +31,7 @@ const mapAuthCodeToMessage = (errorCode) => {
     }
 }
 
-//login
+// login
 export const login = async (email, password) => {
     try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password)
@@ -38,8 +41,51 @@ export const login = async (email, password) => {
     }
 }
 
+// reg
+export const register = async (userData) => {
+    try {
 
-// Logout
+        const userCredential = await createUserWithEmailAndPassword(
+            auth,
+            userData.email,
+            userData.password
+        )
+        const user = userCredential.user;
+
+        const generatedPhotoUrl = `https://ui-avatars.com/api/?name=${userData.firstName}+${userData.lastName}&background=random`
+
+        await updateProfile(user, {
+            displayName: userData.displayName,
+            photoURL: generatedPhotoUrl
+        })
+
+
+        const userDbRef = ref(database, `users/${user.uid}`)
+
+        await set(userDbRef, {
+            email: userData.email,
+            firstName: userData.firstName,
+            lastName: userData.lastName,
+            displayName: userData.displayName,
+            photoUrl: generatedPhotoUrl,
+            role: 'user',
+            gender: userData.gender,
+            birthDate: new Date(userData.date).getTime(),
+            contacts: {
+                phone: userData.phone,
+                whatsapp: userData.whatsapp,
+            },
+            registeredAt: Date.now()
+        })
+
+        return { user, error: null }
+    } catch (error) {
+        console.error('Signup Error:', error)
+        return { user: null, error: mapAuthCodeToMessage(error.code) }
+    }
+}
+
+
 export const logoutUser = async () => {
     try {
         await signOut(auth)

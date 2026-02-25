@@ -1,6 +1,6 @@
 {
     "users": {
-        "dxzF6jjSDDM9wYvs6oHNuWY6tJm2": {
+        "tLH8OfwrwfZElZLSQd3Y888kCuk1": {
             "displayName": "VasilCrutoi",
             "email": "vasil@crutoi.com",
             "firstName": "Vasil",
@@ -11,7 +11,7 @@
             "gender": "male",
             "contacts": {
                 "phone": "+380991234567",
-                "telegram": "@vasil_c"
+                "whatsapp": "+380991234567"
             },
             "registeredAt": 1708351200000
         }

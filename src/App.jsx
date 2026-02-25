@@ -17,8 +17,7 @@ import { AnimatePresence } from 'framer-motion'
 
 //routes
 import ProtectedRoute from './routes/ProtectedRoute'
-
-//TODO: block logined users open login and reg pages
+import PublicRoute from './routes/PublicRoute'
 
 function App() {
   const location = useLocation()
@@ -31,8 +30,22 @@ function App() {
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute>
+                  <Login />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <PublicRoute>
+                  <Register />
+                </PublicRoute>
+              }
+            />
 
             <Route
               path="/user"

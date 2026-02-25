@@ -10,16 +10,15 @@ import { Logo } from '../../components/ui/svg/Logo'
 
 //react
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom' // ДОДАНО useNavigate
 
-//libs
+//services
+import { register } from '../../services/auth.service'
 
 const genderOptions = [
   { label: 'Чоловік', value: 'male' },
   { label: 'Жінка', value: 'female' },
 ]
-
-//TODO: add register method
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -32,18 +31,23 @@ function Register() {
     gender: '',
     phone: '',
     date: '',
-    telegram: '',
+    whatsapp: '',
   })
+
   const [errors, setErrors] = useState({})
+  const [authError, setAuthError] = useState('')
+
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
 
     setErrors((prev) => ({ ...prev, [name]: '' }))
+    setAuthError('')
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     const sanitizedData = {
@@ -52,7 +56,7 @@ function Register() {
       firstName: formData.firstName.trim(),
       lastName: formData.lastName.trim(),
       phone: formData.phone.trim(),
-      telegram: formData.telegram.trim(),
+      whatsapp: formData.whatsapp.trim(),
     }
 
     const newErrors = {}
@@ -79,10 +83,10 @@ function Register() {
       }
     })
 
-    if (sanitizedData.telegram === '') {
-      newErrors.telegram = 'Заповніть поле'
-    } else if (!sanitizedData.telegram.includes('@')) {
-      newErrors.telegram = 'Нікнейм має починатися з @'
+    if (sanitizedData.whatsapp === '') {
+      newErrors.whatsapp = 'Заповніть поле'
+    } else if (sanitizedData.whatsapp.length < 10) {
+      newErrors.whatsapp = 'Введіть коректний номер'
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -95,24 +99,31 @@ function Register() {
       displayName: `${sanitizedData.firstName} ${sanitizedData.lastName}`,
     }
 
-    console.log('Дані готові до відправки:', finalData)
-    // Далі буде: await registerUserInFirebase(finalData.email, finalData.password, finalData)
+    const { user, error } = await register(finalData)
+
+    if (error) {
+      setAuthError(error)
+    } else {
+      console.log('Успішна реєстрація!', user)
+      navigate('/')
+    }
   }
 
   const handleFillTestData = () => {
     setFormData({
-      email: 'testuser@gmail.com ',
+      email: 'testuser@gmail.com',
       password: 'password123',
       confirmPassword: 'password123',
       displayName: '',
-      firstName: 'Василь ',
-      lastName: 'Крутий ',
+      firstName: 'Василь',
+      lastName: 'Крутий',
       gender: 'male',
-      phone: ' +380991234567 ',
+      phone: '+380991234567',
       date: '1995-05-15',
-      telegram: '@vasil_c ',
+      whatsapp: '+380991234567',
     })
     setErrors({})
+    setAuthError('')
   }
 
   return (
@@ -202,13 +213,13 @@ function Register() {
                   placeholder="+380..."
                 />
                 <Input
-                  label="Telegram"
-                  name="telegram"
-                  type="text"
-                  value={formData.telegram}
+                  label="WhatsApp"
+                  name="whatsapp"
+                  type="tel"
+                  value={formData.whatsapp}
                   onChange={handleChange}
-                  error={errors.telegram}
-                  placeholder="@username"
+                  error={errors.whatsapp}
+                  placeholder="+380..."
                 />
               </fieldset>
 
@@ -229,6 +240,19 @@ function Register() {
                 onChange={handleChange}
                 errors={errors.gender}
               />
+
+              {authError && (
+                <div
+                  style={{
+                    color: 'var(--error)',
+                    fontSize: '14px',
+                    textAlign: 'center',
+                    marginTop: '8px',
+                  }}
+                >
+                  {authError}
+                </div>
+              )}
 
               <div style={{ display: 'flex', gap: '16px', marginTop: '16px' }}>
                 <Button

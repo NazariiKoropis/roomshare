@@ -6,9 +6,8 @@ import Container from '../container/Container'
 import { Logo } from '../../ui/svg/Logo'
 
 //react
-import { NavLink, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-// Виносимо статичні дані за межі компонента
 const NAV_ITEMS = [
   { path: '/', label: 'Головна' },
   { path: '/rooms', label: 'Кімнати' },
@@ -49,32 +48,32 @@ function Footer() {
             <h3 className={styles.columnTitle}>Контакти</h3>
             <ul className={styles.addressList}>
               <li>
-                <Link
+                <a
                   href="mailto:info@roomshare.ua"
                   className={styles.addressLink}
                 >
                   info@roomshare.ua
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
+                <a
                   href="https://instagram.com"
                   target="_blank"
                   rel="noreferrer"
                   className={styles.addressLink}
                 >
                   Instagram
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
-                  href="https://t.me"
+                <a
+                  href="https://wa.me/"
                   target="_blank"
                   rel="noreferrer"
                   className={styles.addressLink}
                 >
-                  Telegram
-                </Link>
+                  WhatsApp
+                </a>
               </li>
             </ul>
           </address>
