@@ -27,11 +27,11 @@ export const getUserRoleById = async (id) => {
         if (snapshot.exists()) {
             return snapshot.val();
         } else {
-            return 'user'
+            return 'user';
         }
-
     } catch (error) {
-        console.log('Error fetch data role by id', error)
+        console.log('Error fetch data role by id', error);
+        return 'user';
     }
 }
 

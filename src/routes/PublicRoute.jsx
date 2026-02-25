@@ -15,7 +15,8 @@ function PublicRoute({ children }) {
   }
 
   if (currentUser) {
-    return <Navigate to={`/${userRole}`} replace />
+    const target = userRole ? `/${userRole}` : '/'
+    return <Navigate to={target} replace />
   }
 
   return children

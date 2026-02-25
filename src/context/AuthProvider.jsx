@@ -15,8 +15,13 @@ function AuthProvider({ children }) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const role = await getUserRoleById(user.uid)
-        setUserRole(role)
+        let role = 'user'
+        try {
+          role = await getUserRoleById(user.uid)
+        } catch (err) {
+          console.error('Failed to load role for user', err)
+        }
+        setUserRole(role || 'user')
         setCurrentUser(user)
       } else {
         setCurrentUser(false)

@@ -13,6 +13,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 //services
 import { login } from './../../services/auth.service'
+import { getUserRoleById } from './../../services/user.service'
 
 function Login() {
   const [formData, setFormData] = useState({ email: '', password: '' })
@@ -50,7 +51,14 @@ function Login() {
       setAuthError(error)
     } else {
       console.log('Успішний вхід:', user)
-      navigate('/')
+
+      try {
+        const role = await getUserRoleById(user.uid)
+        navigate(role ? `/${role}` : '/')
+      } catch (err) {
+        console.error('Could not fetch role on login, sending to home', err)
+        navigate('/')
+      }
     }
   }
 
