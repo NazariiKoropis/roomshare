@@ -5,9 +5,7 @@ import {
     updateProfile,
 } from "firebase/auth"
 
-// ДОДАНО: імпорти для роботи з Realtime Database
 import { ref, set } from 'firebase/database'
-// ДОДАНО: імпортуємо database з твого конфігу
 import { auth, database } from './../firebase/firebase'
 
 // Обробник помилок
