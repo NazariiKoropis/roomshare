@@ -2,16 +2,17 @@
 import styles from './Home.module.scss'
 
 //components
-import Container from '../../components/layout/container/Container'
-
-//react
-import { useState } from 'react'
+import Hero from './blocks/hero/Hero'
+import HowItWorks from './blocks/howItWorks/HowItWorks'
+import Teaser from './blocks/teaser/Teaser'
 
 function Home() {
   return (
-    <Container>
-      <h2>roomshare</h2>
-    </Container>
+    <>
+      <Hero />
+      <HowItWorks />
+      <Teaser />
+    </>
   )
 }
 

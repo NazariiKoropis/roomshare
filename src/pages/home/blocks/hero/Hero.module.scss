@@ -1,0 +1,125 @@
+@use "./../../../../assets/styles/mixins" as *;
+
+.heroWrapper {
+    display: flex;
+    min-height: 40vh;
+    background-color: transparent;
+    position: relative;
+
+    @include tablet {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-image: url("/src/assets/images/home/hero-img.jpg");
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+        }
+    }
+
+    :global([data-theme="light"]) & {
+        @include tablet {
+            &::before {
+                background-color: rgba(255, 255, 255, 0.7);
+            }
+        }
+    }
+}
+
+.heroTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 16px;
+    padding: 40px;
+    flex: 1;
+
+    position: relative;
+    z-index: 2;
+
+    h1 {
+        font-size: 3rem;
+        line-height: 1.2;
+    }
+
+    p {
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+        max-width: 80%;
+    }
+
+    @include tablet {
+        align-items: center;
+        text-align: center;
+        padding: 30px 20px;
+
+        p {
+            max-width: 100%;
+        }
+    }
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 16px;
+    margin-top: 10px;
+
+    @include tablet {
+        flex-direction: column;
+        width: 100%;
+
+        > * {
+            width: 100%;
+            text-align: center;
+        }
+    }
+}
+
+.imageSection {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+
+    background-size: cover;
+
+    background-repeat: no-repeat;
+    background-image: url("/src/assets/images/home/hero-img.jpg");
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        pointer-events: none;
+
+        background: linear-gradient(
+            to right,
+            var(--bg-main) 0%,
+            rgba(0, 0, 0, 0.9) 10%,
+            rgba(0, 0, 0, 0.6) 25%,
+            transparent 50%
+        );
+    }
+
+    :global([data-theme="light"]) & {
+        &::before {
+            background: linear-gradient(
+                to right,
+                var(--bg-main) 0%,
+                rgba(255, 255, 255, 0.9) 10%,
+                rgba(255, 255, 255, 0.6) 25%,
+                transparent 50%
+            );
+        }
+    }
+
+    @include tablet {
+        display: none;
+    }
+}
