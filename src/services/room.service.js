@@ -19,6 +19,7 @@ export const getRoomCards = async () => {
             price: room.price,
             slug: room.slug,
             amenities: room.amenities,
+            location: room.location
         }))
 
         return finalData

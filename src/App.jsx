@@ -2,6 +2,8 @@
 import Home from './pages/home/Home'
 import Login from './pages/login/Login'
 import Register from './pages/register/Register'
+import Rooms from './pages/rooms/Rooms'
+import RoomDetails from './pages/roomDetails/RoomDetails'
 import NotFound from './pages/notFound/NotFound'
 
 //protected pages
@@ -23,6 +25,8 @@ function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<Home />} />{' '}
+        <Route path="rooms" element={<Rooms />} />
+        <Route path="rooms/:roomId" element={<RoomDetails />} />
         <Route
           path="login"
           element={

@@ -1,5 +1,5 @@
-const imagesRoom = import.meta.glob('/src/assets/rooms/*.{png,jpg,jpeg,svg}', { eager: true })
-const imagesPeople = import.meta.glob('/src/assets/people/*.{png,jpg,jpeg,svg}', { eager: true })
+const imagesRoom = import.meta.glob('/src/assets/images/rooms/*.{png,jpg,jpeg,svg}', { eager: true })
+const imagesPeople = import.meta.glob('/src/assets/images/people/*.{png,jpg,jpeg,svg}', { eager: true })
 
 const findImage = (imageCollection, imageName) => {
     if (!imageName) return null

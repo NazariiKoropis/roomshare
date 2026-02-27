@@ -1,6 +1,7 @@
 @use "./../../../assets/styles/variables" as *;
 @use "./../../../assets/styles/mixins" as *;
 
+//TODO: make sticky header
 .headerWrapper {
     position: relative;
 }
@@ -142,6 +143,7 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
+    z-index: 100;
 
     opacity: 0;
     transform: translateY(-10px);

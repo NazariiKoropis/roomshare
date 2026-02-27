@@ -27,14 +27,75 @@
             "location": {
                 "city": "Lviv",
                 "address": "Olgi 10",
-                "lat": 15,
-                "lng": 15
+                "lat": 49.8245,
+                "lng": 24.0012
             },
             "amenities": [
                 "WiFi",
                 "Balcony"
             ],
             "createdAt": 1708351200000
+        },
+        "room_2": {
+            "userID": "tLH8OfwrwfZElZLSQd3Y888kCuk1",
+            "title": "Світла кімната на Подолі",
+            "desc": "Шукаю охайного співмешканця в 2-кімнатну квартиру. Є всі необхідні меблі, пральна машина, мікрохвильовка. До метро 5 хвилин пішки.",
+            "price": 8500,
+            "slug": "svitla-kimnata-na-podoli",
+            "status": "active",
+            "location": {
+                "city": "Kyiv",
+                "address": "Костянтинівська 24",
+                "lat": 50.4701,
+                "lng": 30.5132
+            },
+            "amenities": [
+                "WiFi",
+                "Washing machine",
+                "Air conditioning",
+                "TV"
+            ],
+            "createdAt": 1708420000000
+        },
+        "room_3": {
+            "userID": "user_2",
+            "title": "Затишна кімната біля парку",
+            "desc": "Здається кімната для дівчини. Квартира зі свіжим ремонтом, тихі сусіди (молода пара). Без домашніх тварин.",
+            "price": 4500,
+            "slug": "zatyshna-kimnata-park",
+            "status": "active",
+            "location": {
+                "city": "Lviv",
+                "address": "Наукова 35",
+                "lat": 49.8056,
+                "lng": 23.9921
+            },
+            "amenities": [
+                "WiFi",
+                "Oven",
+                "Balcony"
+            ],
+            "createdAt": 1708510000000
+        },
+        "room_4": {
+            "userID": "user_3",
+            "title": "Кімната в центрі Одеси",
+            "desc": "Шикарна кімната у великій комуналці. Високі стелі, атмосферно. Шукаю веселого сусіда/сусідку, які люблять грати в настільні ігри.",
+            "price": 6000,
+            "slug": "kimnata-tsentr-odesa",
+            "status": "inactive",
+            "location": {
+                "city": "Odesa",
+                "address": "Дерибасівська 12",
+                "lat": 46.4846,
+                "lng": 30.7326
+            },
+            "amenities": [
+                "WiFi",
+                "Pet friendly",
+                "Coffee maker"
+            ],
+            "createdAt": 1708600000000
         }
     },
     "resumes": {
@@ -46,6 +107,24 @@
             "city": "Lviv",
             "status": "active",
             "createdAt": 1708355000000
+        },
+        "resume_2": {
+            "userID": "user_3",
+            "title": "Терміново шукаю кімнату",
+            "desc": "Студент 3 курсу КПІ. Бюджет до 5000 грн. Головне - наявність робочого столу та стабільний інтернет. Без шкідливих звичок.",
+            "budget": 5000,
+            "city": "Kyiv",
+            "status": "active",
+            "createdAt": 1708450000000
+        },
+        "resume_3": {
+            "userID": "tLH8OfwrwfZElZLSQd3Y888kCuk1",
+            "title": "Шукаю сусідів для оренди 3-кімнатної",
+            "desc": "Працюю в IT (віддалено). Хочу знайти 1-2 людей, щоб разом зняти велику класну квартиру. Люблю чистоту і порядок.",
+            "budget": 10000,
+            "city": "Kyiv",
+            "status": "active",
+            "createdAt": 1708700000000
         }
     },
     "requests": {
@@ -57,6 +136,24 @@
             "message": "Привіт, ще актуально?",
             "status": "pending",
             "createdAt": 1708360000000
+        },
+        "request_2": {
+            "userId_sent": "tLH8OfwrwfZElZLSQd3Y888kCuk1",
+            "userId_received": "user_2",
+            "targetType": "resume",
+            "targetID": "resume_1",
+            "message": "Доброго дня! Маю чудову кімнату на Науковій, якраз у Ваш бюджет. Цікавить?",
+            "status": "accepted",
+            "createdAt": 1708480000000
+        },
+        "request_3": {
+            "userId_sent": "user_3",
+            "userId_received": "tLH8OfwrwfZElZLSQd3Y888kCuk1",
+            "targetType": "room",
+            "targetID": "room_2",
+            "message": "Привіт! Чи можна подивитися кімнату сьогодні ввечері?",
+            "status": "declined",
+            "createdAt": 1708550000000
         }
     },
     "reports": {
@@ -68,6 +165,15 @@
             "desc": "'cause I wanna do it",
             "status": "open",
             "createdAt": 1708365000000
+        },
+        "report_2": {
+            "reporterID": "tLH8OfwrwfZElZLSQd3Y888kCuk1",
+            "targetType": "resume",
+            "targetID": "resume_2",
+            "title": "Inappropriate content",
+            "desc": "Користувач спамить однаковими анкетами по 5 разів на день.",
+            "status": "resolved",
+            "createdAt": 1708660000000
         }
     }
 }

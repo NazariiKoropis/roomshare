@@ -126,7 +126,6 @@ function Header() {
         </div>
       </Container>
 
-      {/* МОБІЛЬНЕ МЕНЮ */}
       <div
         className={clsx(
           styles.mobileMenu,
