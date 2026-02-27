@@ -15,6 +15,9 @@ import { Link, useNavigate } from 'react-router-dom' // ДОДАНО useNavigate
 //services
 import { register } from '../../services/auth.service'
 
+//libs
+import { ThreeDots } from 'react-loader-spinner'
+
 const genderOptions = [
   { label: 'Чоловік', value: 'male' },
   { label: 'Жінка', value: 'female' },
@@ -36,6 +39,7 @@ function Register() {
 
   const [errors, setErrors] = useState({})
   const [authError, setAuthError] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
 
@@ -98,9 +102,9 @@ function Register() {
       ...sanitizedData,
       displayName: `${sanitizedData.firstName} ${sanitizedData.lastName}`,
     }
-
+    setLoading(true)
     const { user, error } = await register(finalData)
-
+    setLoading(false)
     if (error) {
       setAuthError(error)
     } else {
@@ -145,133 +149,150 @@ function Register() {
               <p>Будь ласка, введіть свої дані для реєстрації.</p>
             </div>
 
-            <form className={styles.form} onSubmit={handleSubmit}>
-              <Input
-                label="Електронна пошта"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                error={errors.email}
-                placeholder="name@example.com"
-              />
-
-              <fieldset className={styles.inputBlock}>
-                <legend className="visually-hidden">Паролі</legend>
-                <Input
-                  label="Пароль"
-                  name="password"
-                  type="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  error={errors.password}
-                  placeholder="••••••••"
+            {loading ? (
+              <div style={{ maxWidth: '100%', margin: '0 auto' }}>
+                <ThreeDots
+                  height="100"
+                  width="100"
+                  radius="9"
+                  color="var(--accent-primary)"
+                  ariaLabel="three-dots-loading"
+                  wrapperStyle={{ margin: '20px' }}
+                  wrapperClass="custom-loader"
+                  visible={true}
                 />
-
-                <Input
-                  label="Підтвердження пароля"
-                  name="confirmPassword"
-                  type="password"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  error={errors.confirmPassword}
-                  placeholder="••••••••"
-                />
-              </fieldset>
-
-              <fieldset className={styles.inputBlock}>
-                <legend className="visually-hidden">Ініціали</legend>
-                <Input
-                  label="Ім'я"
-                  name="firstName"
-                  type="text"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  error={errors.firstName}
-                  placeholder="Ваше ім'я"
-                />
-                <Input
-                  label="Прізвище"
-                  name="lastName"
-                  type="text"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  error={errors.lastName}
-                  placeholder="Ваше прізвище"
-                />
-              </fieldset>
-
-              <fieldset className={styles.inputBlock}>
-                <legend className="visually-hidden">Контактні дані</legend>
-                <Input
-                  label="Телефон"
-                  name="phone"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  error={errors.phone}
-                  placeholder="+380..."
-                />
-                <Input
-                  label="WhatsApp"
-                  name="whatsapp"
-                  type="tel"
-                  value={formData.whatsapp}
-                  onChange={handleChange}
-                  error={errors.whatsapp}
-                  placeholder="+380..."
-                />
-              </fieldset>
-
-              <Input
-                type="date"
-                label="Дата народження"
-                name="date"
-                value={formData.date}
-                onChange={handleChange}
-                error={errors.date}
-              />
-
-              <RadioButtons
-                name="gender"
-                legend="Вибір статі"
-                options={genderOptions}
-                selectedValue={formData.gender}
-                onChange={handleChange}
-                errors={errors.gender}
-              />
-
-              {authError && (
-                <div
-                  style={{
-                    color: 'var(--error)',
-                    fontSize: '14px',
-                    textAlign: 'center',
-                    marginTop: '8px',
-                  }}
-                >
-                  {authError}
-                </div>
-              )}
-
-              <div style={{ display: 'flex', gap: '16px', marginTop: '16px' }}>
-                <Button
-                  type="button"
-                  onClick={handleFillTestData}
-                  fullWidth
-                  style={{
-                    backgroundColor: 'var(--bg-surface-light)',
-                    color: 'var(--text-primary)',
-                  }}
-                >
-                  🛠 Заповнити
-                </Button>
-
-                <Button type="submit" variant="primary" fullWidth>
-                  Зареєструватися
-                </Button>
               </div>
-            </form>
+            ) : (
+              <form className={styles.form} onSubmit={handleSubmit}>
+                <Input
+                  label="Електронна пошта"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  error={errors.email}
+                  placeholder="name@example.com"
+                />
+
+                <fieldset className={styles.inputBlock}>
+                  <legend className="visually-hidden">Паролі</legend>
+                  <Input
+                    label="Пароль"
+                    name="password"
+                    type="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    error={errors.password}
+                    placeholder="••••••••"
+                  />
+
+                  <Input
+                    label="Підтвердження пароля"
+                    name="confirmPassword"
+                    type="password"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    error={errors.confirmPassword}
+                    placeholder="••••••••"
+                  />
+                </fieldset>
+
+                <fieldset className={styles.inputBlock}>
+                  <legend className="visually-hidden">Ініціали</legend>
+                  <Input
+                    label="Ім'я"
+                    name="firstName"
+                    type="text"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    error={errors.firstName}
+                    placeholder="Ваше ім'я"
+                  />
+                  <Input
+                    label="Прізвище"
+                    name="lastName"
+                    type="text"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    error={errors.lastName}
+                    placeholder="Ваше прізвище"
+                  />
+                </fieldset>
+
+                <fieldset className={styles.inputBlock}>
+                  <legend className="visually-hidden">Контактні дані</legend>
+                  <Input
+                    label="Телефон"
+                    name="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    error={errors.phone}
+                    placeholder="+380..."
+                  />
+                  <Input
+                    label="WhatsApp"
+                    name="whatsapp"
+                    type="tel"
+                    value={formData.whatsapp}
+                    onChange={handleChange}
+                    error={errors.whatsapp}
+                    placeholder="+380..."
+                  />
+                </fieldset>
+
+                <Input
+                  type="date"
+                  label="Дата народження"
+                  name="date"
+                  value={formData.date}
+                  onChange={handleChange}
+                  error={errors.date}
+                />
+
+                <RadioButtons
+                  name="gender"
+                  legend="Вибір статі"
+                  options={genderOptions}
+                  selectedValue={formData.gender}
+                  onChange={handleChange}
+                  errors={errors.gender}
+                />
+
+                {authError && (
+                  <div
+                    style={{
+                      color: 'var(--error)',
+                      fontSize: '14px',
+                      textAlign: 'center',
+                      marginTop: '8px',
+                    }}
+                  >
+                    {authError}
+                  </div>
+                )}
+
+                <div
+                  style={{ display: 'flex', gap: '16px', marginTop: '16px' }}
+                >
+                  <Button
+                    type="button"
+                    onClick={handleFillTestData}
+                    fullWidth
+                    style={{
+                      backgroundColor: 'var(--bg-surface-light)',
+                      color: 'var(--text-primary)',
+                    }}
+                  >
+                    🛠 Заповнити
+                  </Button>
+
+                  <Button type="submit" variant="primary" fullWidth>
+                    Зареєструватися
+                  </Button>
+                </div>
+              </form>
+            )}
 
             <p className={styles.loginPrompt}>
               Вже маєте акаунт?{' '}

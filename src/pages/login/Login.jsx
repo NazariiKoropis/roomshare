@@ -15,10 +15,14 @@ import { Link, useNavigate } from 'react-router-dom'
 import { login } from './../../services/auth.service'
 import { getUserRoleById } from './../../services/user.service'
 
+//libs
+import { ThreeDots } from 'react-loader-spinner'
+
 function Login() {
   const [formData, setFormData] = useState({ email: '', password: '' })
   const [errors, setErrors] = useState({})
   const [authError, setAuthError] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
 
@@ -45,8 +49,9 @@ function Login() {
       return
     }
 
+    setLoading(true)
     const { user, error } = await login(formData.email, formData.password)
-
+    setLoading(false)
     if (error) {
       setAuthError(error)
     } else {
@@ -88,52 +93,67 @@ function Login() {
               <p>Будь ласка, введіть свої дані для входу.</p>
             </div>
 
-            <form className={styles.form} onSubmit={handleSubmit}>
-              <Input
-                label="Електронна пошта"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                error={errors.email}
-                placeholder="Введіть ваш email"
-              />
+            {loading ? (
+              <div style={{ maxWidth: '100%', margin: '0 auto' }}>
+                <ThreeDots
+                  height="100"
+                  width="100"
+                  radius="9"
+                  color="var(--accent-primary)"
+                  ariaLabel="three-dots-loading"
+                  wrapperStyle={{ margin: '20px' }}
+                  wrapperClass="custom-loader"
+                  visible={true}
+                />
+              </div>
+            ) : (
+              <form className={styles.form} onSubmit={handleSubmit}>
+                <Input
+                  label="Електронна пошта"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  error={errors.email}
+                  placeholder="Введіть ваш email"
+                />
 
-              <Input
-                label="Пароль"
-                name="password"
-                type="password"
-                value={formData.password}
-                onChange={handleChange}
-                error={errors.password}
-                placeholder="••••••••"
-              />
+                <Input
+                  label="Пароль"
+                  name="password"
+                  type="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  error={errors.password}
+                  placeholder="••••••••"
+                />
 
-              {authError && (
-                <div
-                  style={{
-                    color: 'var(--error)',
-                    fontSize: '14px',
-                    textAlign: 'center',
-                  }}
+                {authError && (
+                  <div
+                    style={{
+                      color: 'var(--error)',
+                      fontSize: '14px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    {authError}
+                  </div>
+                )}
+
+                <Button
+                  type="button"
+                  onClick={handleFillTestData}
+                  variant="primary"
+                  fullWidth
                 >
-                  {authError}
-                </div>
-              )}
+                  test admin
+                </Button>
 
-              <Button
-                type="button"
-                onClick={handleFillTestData}
-                variant="primary"
-                fullWidth
-              >
-                test admin
-              </Button>
-
-              <Button type="submit" variant="primary" fullWidth>
-                Увійти
-              </Button>
-            </form>
+                <Button type="submit" variant="primary" fullWidth>
+                  Увійти
+                </Button>
+              </form>
+            )}
 
             <p className={styles.registerPrompt}>
               Ще не маєте акаунту?{' '}
