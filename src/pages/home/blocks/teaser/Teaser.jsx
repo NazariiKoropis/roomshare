@@ -14,6 +14,7 @@ import { useState, useEffect } from 'react'
 //libs
 import { ThreeDots } from 'react-loader-spinner'
 
+//TODO: побавитися з розмірами і адаптивом
 function Teaser() {
   const [rooms, setRooms] = useState([])
   const [loading, setLoading] = useState(false)
