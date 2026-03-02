@@ -14,28 +14,11 @@ import { useState, useEffect } from 'react'
 //libs
 import { ThreeDots } from 'react-loader-spinner'
 
-//TODO: побавитися з розмірами і адаптивом
+//hooks
+import { useFetch } from './../../../../hooks/useFetch'
+
 function Teaser() {
-  const [rooms, setRooms] = useState([])
-  const [loading, setLoading] = useState(false)
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true)
-      const data = await getRoomCards()
-
-      if (data.length > 3) {
-        const finishedData = data.slice(0, 3)
-        setRooms(finishedData)
-      } else {
-        setRooms(data)
-      }
-
-      setLoading(false)
-    }
-
-    fetchData()
-  }, [])
+  const { data, loading } = useFetch(getRoomCards)
 
   if (loading) {
     return (
@@ -62,7 +45,7 @@ function Teaser() {
         <h2 className={styles.teaserTitle}>Teaser</h2>
 
         <ul className={styles.teaserRooms}>
-          {rooms.map((room) => (
+          {data.slice(0, 3).map((room) => (
             <li key={room.id}>
               {' '}
               <RoomCard room={room} />

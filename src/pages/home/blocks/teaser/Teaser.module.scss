@@ -2,7 +2,7 @@
 @use "./../../../../assets/styles/variables" as *;
 
 .teaserWrapper {
-    padding: 80px 0px;
+    padding: 40px 0px;
 }
 
 .teaserTitle {
@@ -18,9 +18,10 @@
     gap: 24px;
     width: 100%;
 
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    li {
+        display: flex;
+        justify-content: center;
+    }
 
     @include tablet {
         grid-template-columns: 1fr;
