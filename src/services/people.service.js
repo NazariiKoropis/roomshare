@@ -51,12 +51,27 @@ export const getPeopleCards = async () => {
     }
 }
 
+
 export const getAllCities = async () => {
     try {
         const dbRef = ref(database, 'resumes');
-        const snapshot = await get(dbRef)
+        const snapshot = await get(dbRef);
 
+        if (!snapshot.exists()) return [];
+
+        const data = snapshot.val();
+        const citySet = new Set();
+
+        for (const key in data) {
+            const city = data[key]?.city;
+            if (city) {
+                citySet.add(city);
+            }
+        }
+
+        return Array.from(citySet).sort();
     } catch (error) {
-        console.log("Error fetching data from server: ", error)
+        console.log("Error fetching data from server: ", error);
+        return [];
     }
 }

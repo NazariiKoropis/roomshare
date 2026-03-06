@@ -21,7 +21,18 @@ import { useState, useEffect } from 'react'
 
 function Resumes() {
   const { data, loading } = useFetch(getPeopleCards)
-  const [filteredResumes, setFilteredResumes] = useState(data)
+
+  const [allResumes, setAllResumes] = useState([])
+  const [filteredResumes, setFilteredResumes] = useState([])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setAllResumes(data)
+      setFilteredResumes(data)
+    }
+
+    fetchData()
+  }, [data])
 
   if (loading) {
     return (
@@ -47,7 +58,7 @@ function Resumes() {
   }
 
   const handleFilterChange = (filters) => {
-    let result = data
+    let result = allResumes
 
     if (filters.name) {
       result = result.filter((room) =>

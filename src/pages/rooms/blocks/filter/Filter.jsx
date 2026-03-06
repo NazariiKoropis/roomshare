@@ -4,6 +4,8 @@ import styles from './Filter.module.scss'
 //components
 import Button from './../../../../components/ui/button/Button'
 import Input from './../../../../components/ui/input/Input'
+import ComboBox from '../../../../components/ui/comboBox/ComboBox'
+import CheckBoxGroup from './../../../../components/ui/checkBoxGroup/CheckBoxGroup'
 
 //react
 import { useState, useEffect } from 'react'
@@ -74,41 +76,22 @@ function Filter({ onFilterChange }) {
         placeholder="Наприклад: Світла кімната"
       />
 
-      <div className={styles.filterGroup}>
-        <label htmlFor="city-select" className={styles.label}>
-          Місто
-        </label>
-        <select
-          id="city-select"
-          className={styles.select}
-          value={selectedCity}
-          onChange={handleCityChange}
-        >
-          <option value="">Усі міста</option>
-          {cities.map((city) => (
-            <option key={city} value={city}>
-              {city}
-            </option>
-          ))}
-        </select>
-      </div>
+      <ComboBox
+        name={'city-select'}
+        label={'Місто'}
+        value={selectedCity}
+        values={cities}
+        onChange={handleCityChange}
+        baseValue="Усі міста"
+      />
 
-      <div className={styles.filterGroup}>
-        <label className={styles.label}>Зручності</label>
-        <div className={styles.checkboxList}>
-          {amenities.map((amenity) => (
-            <label key={amenity} className={styles.checkboxLabel}>
-              <input
-                type="checkbox"
-                checked={selectedAmenities.includes(amenity)}
-                onChange={() => handleAmenityChange(amenity)}
-                className={styles.checkboxInput}
-              />
-              <span className={styles.checkboxText}>{amenity}</span>
-            </label>
-          ))}
-        </div>
-      </div>
+      <CheckBoxGroup
+        label="Зручності"
+        name="amenities"
+        values={amenities}
+        selectedValues={selectedAmenities}
+        onChange={handleAmenityChange}
+      />
 
       <Button onClick={handleResetFilters} fullWidth>
         Скинути
