@@ -67,10 +67,19 @@ function Login() {
     }
   }
 
-  const handleFillTestData = () => {
+  const handleFillTestDataAdmin = () => {
     setFormData({
       email: 'vasil@crutoi.com',
       password: '12345678',
+    })
+    setErrors({})
+    setAuthError('')
+  }
+
+  const handleFillTestDataUser = () => {
+    setFormData({
+      email: 'testuser@gmail.com',
+      password: 'password123',
     })
     setErrors({})
     setAuthError('')
@@ -142,11 +151,20 @@ function Login() {
 
                 <Button
                   type="button"
-                  onClick={handleFillTestData}
+                  onClick={handleFillTestDataAdmin}
                   variant="primary"
                   fullWidth
                 >
                   test admin
+                </Button>
+
+                <Button
+                  type="button"
+                  onClick={handleFillTestDataUser}
+                  variant="primary"
+                  fullWidth
+                >
+                  test user
                 </Button>
 
                 <Button type="submit" variant="primary" fullWidth>

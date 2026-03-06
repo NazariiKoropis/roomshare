@@ -4,6 +4,8 @@ import Login from './pages/login/Login'
 import Register from './pages/register/Register'
 import Rooms from './pages/rooms/Rooms'
 import RoomDetails from './pages/roomDetails/RoomDetails'
+import Resumes from './pages/resumes/Resumes'
+import ResumeDetails from './pages/resumeDetails/ResumesDetails'
 import NotFound from './pages/notFound/NotFound'
 
 //protected pages
@@ -27,6 +29,8 @@ function App() {
         <Route index element={<Home />} />{' '}
         <Route path="rooms" element={<Rooms />} />
         <Route path="rooms/:roomId" element={<RoomDetails />} />
+        <Route path="resumes" element={<Resumes />} />
+        <Route path="resumes/:resumeId" element={<ResumeDetails />} />
         <Route
           path="login"
           element={

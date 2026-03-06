@@ -19,7 +19,7 @@ import { useAuth } from './../../../context/AuthContext'
 const NAV_ITEMS = [
   { path: '/', label: 'Головна' },
   { path: '/rooms', label: 'Кімнати' },
-  { path: '/people', label: 'Люди' },
+  { path: '/resumes', label: 'Люди' },
 ]
 
 function Header() {

@@ -1,0 +1,109 @@
+@use "./../../../assets/styles/variables" as *;
+@use "./../../../assets/styles/mixins" as *;
+
+.card {
+    display: flex;
+    gap: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 16px;
+    transition:
+        transform 0.3s,
+        border-color 0.3s;
+    cursor: pointer;
+
+    &:hover {
+        transform: translateY(-2px);
+        border-color: var(--border-hover);
+
+        .img {
+            filter: brightness(1.05);
+        }
+    }
+
+    @include tablet {
+        flex-direction: column;
+    }
+}
+
+.img {
+    max-width: 200px;
+    width: 100%;
+    border-radius: 8px;
+    transition: filter 0.3s;
+    object-fit: cover;
+    color: var(--text-primary);
+    @include tablet {
+        margin: 0 auto;
+    }
+}
+
+.title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.budget {
+    font-weight: 700;
+    color: var(--accent-primary);
+    white-space: nowrap;
+}
+
+.name {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin: 0;
+
+    @include tablet {
+        text-align: center;
+    }
+}
+
+.desc {
+    font-style: italic;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+    @include tablet {
+        text-align: center;
+    }
+}
+
+.cardInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 16px;
+    gap: 8px;
+}
+
+.infoList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+
+    @include tablet {
+        justify-content: center;
+    }
+
+    li {
+        padding: 8px 16px;
+        border-radius: 100px;
+        background-color: var(--bg-surface-light);
+        color: var(--text-primary);
+        font-size: 0.85rem;
+        font-weight: 500;
+        @include tablet {
+            padding: 8px;
+        }
+    }
+}

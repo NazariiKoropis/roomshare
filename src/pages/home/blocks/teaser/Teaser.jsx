@@ -8,9 +8,6 @@ import RoomCard from '../../../../components/shared/roomCard/roomCard'
 //services
 import { getRoomCards } from './../../../../services/room.service'
 
-//react
-import { useState, useEffect } from 'react'
-
 //libs
 import { ThreeDots } from 'react-loader-spinner'
 

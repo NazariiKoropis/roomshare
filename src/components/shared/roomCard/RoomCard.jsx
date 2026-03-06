@@ -20,7 +20,7 @@ function RoomCard({ room }) {
   } = room
   const navigate = useNavigate()
 
-  const imageUrl = getRoomImage(slug) || getRoomImage('default.png')
+  const imageUrl = getRoomImage(slug) || getRoomImage('default.svg')
 
   const handleNavigate = () => {
     navigate(`/rooms/${id}`)

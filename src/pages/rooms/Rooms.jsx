@@ -2,7 +2,7 @@
 import styles from './Rooms.module.scss'
 
 //components
-import Hero from './blocks/Hero/Hero'
+import Hero from '../../components/layout/Hero/Hero'
 import RoomList from './blocks/roomList/RoomList'
 import Container from '../../components/layout/container/Container'
 
@@ -81,7 +81,12 @@ function Rooms() {
 
   return (
     <>
-      <Hero />
+      <Hero
+        title={'Знайди кімнату своєї мрії'}
+        text={
+          'Переглядай актуальні оголошення та обирай найкращий варіант для себе.'
+        }
+      />
       <Container>
         <div className={styles.contentWrapper}>
           <aside className={styles.sidebar}>

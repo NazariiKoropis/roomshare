@@ -2,7 +2,6 @@ import { database } from './../firebase/firebase';
 
 import { get, ref } from 'firebase/database';
 
-
 export const getRoomCards = async () => {
     try {
         const dbRef = ref(database, 'rooms');
