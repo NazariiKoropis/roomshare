@@ -16,7 +16,6 @@ function ResumesList({ resumes = [] }) {
 
   return (
     <section>
-      <h2 className={styles.title}>Останні резюме</h2>
       <ul className={styles.listGrid}>
         {resumes.map((item) => (
           <li key={item.id}>

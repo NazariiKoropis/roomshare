@@ -1,12 +1,5 @@
 @use "./../../../../assets/styles/variables" as *;
 
-.title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 24px;
-    color: var(--text-primary);
-}
-
 .listGrid {
     display: grid;
 

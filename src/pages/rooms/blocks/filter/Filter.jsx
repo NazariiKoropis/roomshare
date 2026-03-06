@@ -39,7 +39,7 @@ function Filter({ onFilterChange }) {
       city: selectedCity,
       amenities: selectedAmenities,
     })
-  }, [name, selectedCity, selectedAmenities])
+  }, [name, selectedCity, selectedAmenities, onFilterChange])
 
   const handleFilterName = (e) => {
     setName(e.target.value)

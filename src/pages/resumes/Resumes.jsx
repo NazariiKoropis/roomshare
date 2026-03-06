@@ -17,22 +17,42 @@ import { getPeopleCards } from './../../services/people.service'
 import { ThreeDots } from 'react-loader-spinner'
 
 //react
-import { useState, useEffect } from 'react'
+import { useState, useCallback } from 'react'
 
 function Resumes() {
   const { data, loading } = useFetch(getPeopleCards)
 
-  const [allResumes, setAllResumes] = useState([])
-  const [filteredResumes, setFilteredResumes] = useState([])
+  const [activeFilters, setActiveFilters] = useState({})
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setAllResumes(data)
-      setFilteredResumes(data)
+  const handleFilterChange = useCallback((filters) => {
+    setActiveFilters(filters)
+  }, [])
+
+  const filteredResumes = (data || []).filter((resume) => {
+    if (activeFilters.name) {
+      if (
+        !resume.displayName
+          ?.toLowerCase()
+          .includes(activeFilters.name.toLowerCase())
+      ) {
+        return false
+      }
     }
 
-    fetchData()
-  }, [data])
+    if (activeFilters.budget) {
+      if (resume.budget < activeFilters.budget) return false
+    }
+
+    if (activeFilters.city) {
+      if (resume.city !== activeFilters.city) return false
+    }
+
+    if (activeFilters.gender) {
+      if (resume.gender !== activeFilters.gender) return false
+    }
+
+    return true
+  })
 
   if (loading) {
     return (
@@ -57,28 +77,6 @@ function Resumes() {
     )
   }
 
-  const handleFilterChange = (filters) => {
-    let result = allResumes
-
-    if (filters.name) {
-      result = result.filter((room) =>
-        room.title.toLowerCase().includes(filters.name.toLowerCase()),
-      )
-    }
-
-    if (filters.city) {
-      result = result.filter((room) => room.location?.city === filters.city)
-    }
-
-    if (filters.amenities.length > 0) {
-      result = result.filter((room) =>
-        filters.amenities.every((amenity) => room.amenities?.includes(amenity)),
-      )
-    }
-
-    setFilteredResumes(result)
-  }
-
   return (
     <>
       <Hero
@@ -88,8 +86,7 @@ function Resumes() {
       <Container>
         <div className={styles.gridWrapper}>
           <aside className={styles.sidebar}>
-            <h2>Фільтри</h2>
-            <Filter />
+            <Filter onFilterChange={handleFilterChange} />
           </aside>
 
           <div className={styles.listArea}>
