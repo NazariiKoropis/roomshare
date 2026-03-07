@@ -90,7 +90,10 @@ function Resumes() {
           </aside>
 
           <div className={styles.listArea}>
-            <ResumesList resumes={filteredResumes} />
+            <ResumesList
+              key={JSON.stringify(activeFilters)}
+              resumes={filteredResumes}
+            />
           </div>
         </div>
       </Container>
