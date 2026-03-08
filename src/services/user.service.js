@@ -19,6 +19,23 @@ export const getUserById = async (id) => {
     }
 }
 
+export const getUserDisplayNameById = async (id) => {
+    try {
+        const dbRef = ref(database);
+        const snapshot = await get(child(dbRef, `users/${id}`));
+
+        if (snapshot.exists()) {
+            return snapshot.val().displayName;
+        } else {
+            return null
+        }
+
+    } catch (error) {
+        console.log('Error fetch data user by id', error)
+    }
+}
+
+
 export const getUserRoleById = async (id) => {
     try {
         const dbRef = ref(database);

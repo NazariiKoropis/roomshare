@@ -13,9 +13,11 @@
     "clsx": "^2.1.1",
     "firebase": "^12.9.0",
     "framer-motion": "^12.34.3",
+    "leaflet": "^1.9.4",
     "lucide-react": "^0.575.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "react": "^19.0.0-rc.1",
+    "react-dom": "^19.0.0-rc.1",
+    "react-leaflet": "^5.0.0-rc.2",
     "react-loader-spinner": "^8.0.2",
     "react-router-dom": "^7.13.0",
     "sass": "^1.97.3"

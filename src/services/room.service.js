@@ -79,3 +79,18 @@ export const getAllAmenities = async () => {
         return []
     }
 }
+
+export const getRoomById = async (id) => {
+    try {
+        const dbRef = ref(database, `rooms/${id}`)
+        const snapshot = await get(dbRef)
+
+        if (!snapshot.exists()) return {}
+
+        return snapshot.val()
+
+    } catch (error) {
+        console.log("Error fetching data from server", error)
+        return
+    }
+}
