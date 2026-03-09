@@ -11,7 +11,6 @@ export const getPeopleCards = async () => {
 
         const resumesData = resumesSnapshot.val();
 
-
         const peopleCards = await Promise.all(
 
             Object.entries(resumesData).map(async ([id, resume]) => {
@@ -51,7 +50,6 @@ export const getPeopleCards = async () => {
     }
 }
 
-
 export const getAllCities = async () => {
     try {
         const dbRef = ref(database, 'resumes');
@@ -73,5 +71,43 @@ export const getAllCities = async () => {
     } catch (error) {
         console.log("Error fetching data from server: ", error);
         return [];
+    }
+}
+
+
+export const getPeopleCardById = async (id) => {
+    try {
+        const dbRef = ref(database);
+
+        const resumeSnapshot = await get(child(dbRef, `resumes/${id}`));
+
+        if (!resumeSnapshot.exists()) return null;
+
+        const resume = resumeSnapshot.val();
+        const userId = resume.userID;
+
+        let userData = {};
+
+
+        if (userId) {
+            const userSnapshot = await get(child(dbRef, `users/${userId}`));
+            if (userSnapshot.exists()) {
+                userData = userSnapshot.val();
+            }
+        }
+
+
+        return {
+            id,
+            ...resume,
+            displayName: userData.displayName,
+            birthDate: userData.birthDate,
+            gender: userData.gender,
+            photoUrl: userData.photoUrl,
+        };
+
+    } catch (error) {
+        console.error(`Error fetching resume ${id}:`, error);
+        return null;
     }
 }
