@@ -30,7 +30,7 @@ function Hero() {
           <Link className={primaryBtnStyle} to="/rooms">
             Знайти кімнату
           </Link>
-          <Link className={ghostBtnStyle} to="/people">
+          <Link className={ghostBtnStyle} to="/resumes">
             Шукати сусіда
           </Link>
         </div>

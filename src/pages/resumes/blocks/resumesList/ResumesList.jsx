@@ -37,6 +37,8 @@ function ResumesList({ resumes }) {
 
   return (
     <section>
+      {' '}
+      <h2 className="visually-hidden">Список резюме</h2>
       <ul className={styles.listGrid}>
         {currentResumes.map((item) => (
           <li key={item.id}>
@@ -44,7 +46,6 @@ function ResumesList({ resumes }) {
           </li>
         ))}
       </ul>
-
       {totalPages > 1 && (
         <div className={styles.pagination}>
           <button

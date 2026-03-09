@@ -55,7 +55,7 @@ function Login() {
     if (error) {
       setAuthError(error)
     } else {
-      console.log('Успішний вхід:', user)
+      console.log('Успішний вхід')
 
       try {
         const role = await getUserRoleById(user.uid)

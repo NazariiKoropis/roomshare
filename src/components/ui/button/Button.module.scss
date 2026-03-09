@@ -16,8 +16,8 @@
 
     cursor: pointer;
     transition:
-        background-color 0.2s,
-        color 0.2s,
+        background-color 0.3s,
+        color 0.3s,
         transform 0.1s;
 
     &:disabled {
@@ -49,6 +49,15 @@
     &:hover:not(:disabled) {
         color: var(--text-inverse);
         background-color: var(--text-primary);
+    }
+}
+
+.button--error {
+    background-color: var(--error);
+    color: var(--text-primary);
+
+    &:hover:not(:disabled) {
+        background-color: hsl(0, 84%, 65%);
     }
 }
 

@@ -81,33 +81,42 @@ function RoomDetails() {
         }
       />
       <Container>
-        <section>
-          <article>
+        <section className={styles.block}>
+          <article className={styles.roomImage}>
             <img
               src={getRoomImage(data.slug) || getRoomImage('default')}
               alt={data.desc}
             />
           </article>
-          <div>
+          <div className={styles.roomInfo}>
             {' '}
             <h2>{data.title}</h2>
             <p>{data.desc}</p>
             <p>{data.price} ₴ / місяць</p>
             <div className={styles.amenities}>
-              <h3>Зручності:</h3>
-              <ul>
+              <h3 className={styles.title}>Зручності:</h3>
+              <ul className={styles.list}>
                 {data.amenities?.length > 0 ? (
-                  data.amenities.map((item) => <li key={item}>{item}</li>)
+                  data.amenities.map((item) => (
+                    <li key={item} className={styles.listItem}>
+                      {item}
+                    </li>
+                  ))
                 ) : (
-                  <li>Інформація відсутня</li>
+                  <li className={styles.listItem}>Інформація відсутня</li>
                 )}
               </ul>
             </div>
-            <Button>Дзвонити</Button>
+            <div className={styles.buttonBlock}>
+              <Button fullWidth>Дзвонити</Button>
+              <Button variant="error" fullWidth>
+                Поскаржетись
+              </Button>
+            </div>
           </div>
         </section>
 
-        <section>
+        <section className={styles.block}>
           {hasCoordinates ? (
             <Map
               lat={lat}
@@ -120,11 +129,11 @@ function RoomDetails() {
           )}
 
           <div className={styles.ownerBlock}>
-            <ul className={styles.metaList}>
-              <li>
+            <ul className={styles.list}>
+              <li className={styles.listItem}>
                 <strong>Власник:</strong> {ownerName}
               </li>
-              <li>
+              <li className={styles.listItem}>
                 <strong>Опубліковано:</strong> {DateConvertor(data.createdAt)}
               </li>
             </ul>
