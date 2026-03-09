@@ -6,8 +6,8 @@ import Container from './../../components/layout/container/Container'
 import Button from './../../components/ui/button/Button'
 import Hero from './../../components/layout/Hero/Hero'
 import Map from './blocks/Map'
-import ContactsModal from './modals/ContacsModal'
-import ReportModal from './modals/ReportModal'
+import ContactsModal from './blocks/modals/ContacsModal'
+import ReportModal from './blocks/modals/ReportModal'
 
 //react
 import { useEffect, useState, useCallback } from 'react'

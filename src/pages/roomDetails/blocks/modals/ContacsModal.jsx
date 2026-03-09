@@ -1,6 +1,6 @@
 //components
-import Modal from '../../../components/ui/modal/Modal'
-import Button from '../../../components/ui/button/Button'
+import Modal from '../../../../components/ui/modal/Modal'
+import Button from '../../../../components/ui/button/Button'
 
 function ContactsModal({ isOpen, setIsOpen, ownerName, contacts }) {
   return (

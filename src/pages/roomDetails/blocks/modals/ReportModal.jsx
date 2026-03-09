@@ -1,14 +1,14 @@
 //components
-import Modal from '../../../components/ui/modal/Modal'
-import Button from '../../../components/ui/button/Button'
-import TextArea from './../../../components/ui/textArea/TextArea'
-import ComboBox from './../../../components/ui/comboBox/ComboBox'
+import Modal from '../../../../components/ui/modal/Modal'
+import Button from './../../../../components/ui/button/Button'
+import TextArea from './../../../../components/ui/textArea/TextArea'
+import ComboBox from './../../../../components/ui/comboBox/ComboBox'
 
 //react
 import { useState } from 'react'
 
 //services (не забудь імпортувати свій сервіс!)
-import { createReport } from '../../../services/report.service'
+import { createReport } from '../../../../services/report.service'
 
 const REPORT_TITLES = [
   'Скам / Шахрайство',
