@@ -6,17 +6,27 @@ import Container from './../../components/layout/container/Container'
 import Button from './../../components/ui/button/Button'
 import Hero from './../../components/layout/Hero/Hero'
 import Map from './blocks/Map'
+import ContactsModal from './modals/ContacsModal'
+import ReportModal from './modals/ReportModal'
 
 //react
 import { useEffect, useState, useCallback } from 'react'
+
+import { useAuth } from './../../context/AuthContext'
+
+//routes
 import { useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 //hooks
 import { useFetch } from './../../hooks/useFetch'
 
 //services
 import { getRoomById } from './../../services/room.service'
-import { getUserDisplayNameById } from './../../services/user.service'
+import {
+  getUserDisplayNameById,
+  getUserContactsById,
+} from './../../services/user.service'
 
 //loader
 import { ThreeDots } from 'react-loader-spinner'
@@ -26,20 +36,44 @@ import { getRoomImage } from '../../utils/imagesUtil'
 import { DateConvertor } from './../../utils/dateConvert'
 
 function RoomDetails() {
+  const { currentUser } = useAuth()
   const { roomId } = useParams()
 
   const fetchData = useCallback(() => getRoomById(roomId), [roomId])
 
   const [ownerName, setOwnerName] = useState('Завантаження...')
+  const [contacts, setContacts] = useState({})
   const { data, loading } = useFetch(fetchData)
+
+  const [isCallModalOpen, setIsCallModalOpen] = useState(false)
+  const [isReportModalOpen, setIsReportModalOpen] = useState(false)
+
+  const navigate = useNavigate()
+
+  const onCallModalClick = () => {
+    setIsCallModalOpen(true)
+  }
+
+  const onReportModalClick = () => {
+    if (!currentUser) {
+      navigate('/login')
+      return
+    }
+    setIsReportModalOpen(true)
+  }
 
   useEffect(() => {
     if (data?.userID) {
-      const fetchOwner = async () => {
-        const name = await getUserDisplayNameById(data?.userID)
+      const fetchOwnerData = async () => {
+        const [name, contactsData] = await Promise.all([
+          getUserDisplayNameById(data.userID),
+          getUserContactsById(data.userID),
+        ])
+
         setOwnerName(name || 'Невідомий користувач')
+        setContacts(contactsData || {})
       }
-      fetchOwner()
+      fetchOwnerData()
     }
   }, [data?.userID])
 
@@ -90,9 +124,13 @@ function RoomDetails() {
           </article>
           <div className={styles.roomInfo}>
             {' '}
-            <h2>{data.title}</h2>
-            <p>{data.desc}</p>
-            <p>{data.price} ₴ / місяць</p>
+            <div className={styles.textContent}>
+              <h2 className={styles.title}>{data.title}</h2>
+              <p className={styles.desc}>{data.desc}</p>
+              <p className={styles.price}>
+                <span>{data.price} </span>₴ / місяць
+              </p>
+            </div>
             <div className={styles.amenities}>
               <h3 className={styles.title}>Зручності:</h3>
               <ul className={styles.list}>
@@ -108,9 +146,11 @@ function RoomDetails() {
               </ul>
             </div>
             <div className={styles.buttonBlock}>
-              <Button fullWidth>Дзвонити</Button>
-              <Button variant="error" fullWidth>
-                Поскаржетись
+              <Button onClick={onCallModalClick} fullWidth>
+                Дзвонити
+              </Button>
+              <Button onClick={onReportModalClick} variant="error" fullWidth>
+                Надіслати скаргу
               </Button>
             </div>
           </div>
@@ -131,6 +171,14 @@ function RoomDetails() {
           <div className={styles.ownerBlock}>
             <ul className={styles.list}>
               <li className={styles.listItem}>
+                <strong>Місто: </strong>
+                {data?.location?.city}
+              </li>
+              <li className={styles.listItem}>
+                <strong>Вулиця: </strong>
+                {data?.location?.address}
+              </li>
+              <li className={styles.listItem}>
                 <strong>Власник:</strong> {ownerName}
               </li>
               <li className={styles.listItem}>
@@ -140,6 +188,20 @@ function RoomDetails() {
           </div>
         </section>
       </Container>
+
+      <ContactsModal
+        isOpen={isCallModalOpen}
+        setIsOpen={setIsCallModalOpen}
+        ownerName={ownerName}
+        contacts={contacts}
+      />
+
+      <ReportModal
+        isOpen={isReportModalOpen}
+        setIsOpen={setIsReportModalOpen}
+        userID={currentUser.uid}
+        roomID={roomId}
+      />
     </>
   )
 }

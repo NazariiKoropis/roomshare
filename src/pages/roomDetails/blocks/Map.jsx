@@ -1,6 +1,3 @@
-//styles
-import styles from './Map.module.scss'
-
 //map
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -19,7 +16,13 @@ L.Marker.prototype.options.icon = DefaultIcon
 
 function Map({ lat, lng, address, city }) {
   return (
-    <div className={styles.mapContainer}>
+    <div
+      style={{
+        borderRadius: '12px',
+        backgroundColor: 'var(--bg-surface-light)',
+        padding: '8px',
+      }}
+    >
       <MapContainer
         center={[lat, lng]}
         zoom={14}

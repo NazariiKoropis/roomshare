@@ -52,3 +52,18 @@ export const getUserRoleById = async (id) => {
     }
 }
 
+export const getUserContactsById = async (id) => {
+    try {
+        const dbRef = ref(database)
+        const snapshot = await get(child(dbRef, `users/${id}/contacts`));
+
+        if (snapshot.exists())
+            return snapshot.val();
+        else
+            return {}
+
+    } catch (error) {
+        console.log("Error fetching users contact data: ", error)
+        return {}
+    }
+} 
