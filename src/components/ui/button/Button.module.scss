@@ -34,7 +34,7 @@
 
 .button--primary {
     background-color: var(--accent-primary);
-    color: var(--text-inverse);
+    color: var(--text-primary);
 
     &:hover:not(:disabled) {
         background-color: var(--accent-hover);
@@ -54,7 +54,7 @@
 
 .button--error {
     background-color: var(--error);
-    color: var(--text-inverse);
+    color: var(--text-primary);
 
     &:hover:not(:disabled) {
         background-color: hsl(0, 84%, 65%);

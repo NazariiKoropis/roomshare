@@ -6,7 +6,8 @@
     padding: 20px 40px;
     height: 80vh;
 
-    @include tablet {
+    @include laptop {
+        padding: 12px 24px;
         height: auto;
     }
 }
