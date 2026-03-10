@@ -1,6 +1,6 @@
 import { database } from './../firebase/firebase';
 
-import { get, ref } from 'firebase/database';
+import { get, ref, orderByChild, equalTo, query } from 'firebase/database';
 
 export const getRoomCards = async () => {
     try {
@@ -92,5 +92,26 @@ export const getRoomById = async (id) => {
     } catch (error) {
         console.log("Error fetching data from server", error)
         return
+    }
+}
+
+export const getRoomByUserId = async (userId) => {
+    try {
+        const dbRef = ref(database, 'rooms');
+
+        const q = query(dbRef, orderByChild('userID'), equalTo(userId));
+        const snapshot = await get(q);
+
+        if (snapshot.exists()) {
+            const roomsData = snapshot.val();
+            const roomId = Object.keys(roomsData)[0];
+
+            return { id: roomId, ...roomsData[roomId] };
+        }
+
+        return null;
+    } catch (error) {
+        console.error("Помилка при пошуку кімнати користувача:", error);
+        return null;
     }
 }
