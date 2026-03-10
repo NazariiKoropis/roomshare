@@ -27,7 +27,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 32px;
 
-    @include tablet {
+    @include laptop {
         grid-template-columns: 1fr;
     }
 
