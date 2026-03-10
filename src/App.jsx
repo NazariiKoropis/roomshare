@@ -12,6 +12,12 @@ import NotFound from './pages/notFound/NotFound'
 import UserProfile from './pages/user/userProfile/UserProfile'
 import Admin from './pages/admin/Admin'
 
+//user pages
+import UserInfo from './pages/user/userInfo/UserInfo'
+import UserRequests from './pages/user/userRequests/UserRequests'
+import UserRoom from './pages/user/userRoom/UserRoom'
+import UserResume from './pages/user/userResume/UserResume'
+
 //layout
 import Layout from './components/layout/Layout'
 
@@ -54,7 +60,13 @@ function App() {
               <UserProfile />
             </ProtectedRoute>
           }
-        />
+        >
+          {' '}
+          <Route index element={<UserInfo />} />
+          <Route path="room" element={<UserRoom />} />
+          <Route path="resume" element={<UserResume />} />
+          <Route path="requests" element={<UserRequests />} />
+        </Route>
         <Route
           path="admin"
           element={
@@ -62,7 +74,7 @@ function App() {
               <Admin />
             </ProtectedRoute>
           }
-        />
+        ></Route>
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
