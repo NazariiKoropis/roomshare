@@ -4,6 +4,11 @@
 .profileWrapper {
     max-width: none;
     padding: 20px 40px;
+    height: 80vh;
+
+    @include tablet {
+        height: auto;
+    }
 }
 
 .dashboardGrid {

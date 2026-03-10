@@ -72,9 +72,9 @@ function UserProfile() {
           </Button>
         </aside>
 
-        <section className={styles.content}>
+        <div className={styles.content}>
           <Outlet />
-        </section>
+        </div>
       </div>
     </Container>
   )
