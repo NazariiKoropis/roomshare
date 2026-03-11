@@ -1,6 +1,6 @@
 import { database } from './../firebase/firebase';
 
-import { get, ref, orderByChild, equalTo, query, push, set } from 'firebase/database';
+import { get, ref, orderByChild, equalTo, query, push, set, update, remove } from 'firebase/database';
 
 export const getRoomCards = async () => {
     try {
@@ -125,6 +125,28 @@ export const createRoom = async (roomData) => {
         return true;
     } catch (error) {
         console.error("Помилка при створенні кімнати:", error);
+        return false;
+    }
+}
+
+export const updateRoom = async (roomId, updatedData) => {
+    try {
+        const dbRef = ref(database, `rooms/${roomId}`);
+        await update(dbRef, updatedData);
+        return true;
+    } catch (error) {
+        console.error("Помилка при оновленні кімнати:", error);
+        return false;
+    }
+}
+
+export const deleteRoom = async (roomId) => {
+    try {
+        const dbRef = ref(database, `rooms/${roomId}`);
+        await remove(dbRef);
+        return true;
+    } catch (error) {
+        console.error("Помилка при видаленні кімнати:", error);
         return false;
     }
 }
