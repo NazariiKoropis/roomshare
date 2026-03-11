@@ -1,0 +1,62 @@
+@use "./../../../../assets/styles/variables" as *;
+@use "./../../../../assets/styles/mixins" as *;
+
+.createWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.header {
+    border-bottom: 2px solid var(--accent-primary);
+    padding-bottom: 16px;
+
+    h2 {
+        font-size: 1.5rem;
+        color: var(--text-primary);
+    }
+}
+
+.formWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.formContent {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+
+    @include laptop {
+        grid-template-columns: 1fr;
+    }
+
+    .column {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        div {
+            @include laptop {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+
+    fieldset {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        border: none;
+        padding: 0;
+        margin: 0;
+
+        legend {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+    }
+}

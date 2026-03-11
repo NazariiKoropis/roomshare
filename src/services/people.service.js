@@ -1,5 +1,5 @@
 import { database } from './../firebase/firebase';
-import { get, ref, child } from 'firebase/database';
+import { get, ref, child, orderByChild, equalTo, query, push, set, update, remove } from 'firebase/database';
 
 export const getPeopleCards = async () => {
     try {
@@ -109,5 +109,59 @@ export const getPeopleCardById = async (id) => {
     } catch (error) {
         console.error(`Error fetching resume ${id}:`, error);
         return null;
+    }
+}
+
+export const getResumeByUserId = async (userId) => {
+    try {
+        const dbRef = ref(database, 'resumes');
+        const q = query(dbRef, orderByChild('userID'), equalTo(userId));
+        const snapshot = await get(q);
+
+        if (snapshot.exists()) {
+            const resumesData = snapshot.val();
+            const resumeId = Object.keys(resumesData)[0];
+            return { id: resumeId, ...resumesData[resumeId] };
+        }
+        return null;
+    } catch (error) {
+        console.error("Помилка при пошуку анкети користувача:", error);
+        return null;
+    }
+}
+
+export const createResume = async (resumeData) => {
+    try {
+        const dbRef = ref(database, 'resumes');
+        const newResumeRef = push(dbRef);
+        await set(newResumeRef, resumeData);
+        return true;
+    } catch (error) {
+        console.error("Помилка при створенні анкети:", error);
+        return false;
+    }
+}
+
+
+export const updateResume = async (resumeId, updatedData) => {
+    try {
+        const dbRef = ref(database, `resumes/${resumeId}`);
+        await update(dbRef, updatedData);
+        return true;
+    } catch (error) {
+        console.error("Помилка при оновленні анкети:", error);
+        return false;
+    }
+}
+
+
+export const deleteResume = async (resumeId) => {
+    try {
+        const dbRef = ref(database, `resumes/${resumeId}`);
+        await remove(dbRef);
+        return true;
+    } catch (error) {
+        console.error("Помилка при видаленні анкети:", error);
+        return false;
     }
 }
