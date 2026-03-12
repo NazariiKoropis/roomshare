@@ -1,0 +1,107 @@
+@use "./../../../assets/styles/variables" as *;
+@use "./../../../assets/styles/mixins" as *;
+
+.requestsWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.loaderWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+.header {
+    border-bottom: 2px solid var(--accent-primary);
+    padding-bottom: 16px;
+
+    h2 {
+        font-size: 1.5rem;
+        color: var(--text-primary);
+        margin: 0;
+    }
+}
+
+.tabsContainer {
+    display: flex;
+    gap: 16px;
+    border-bottom: 2px solid var(--bg-surface);
+    padding-bottom: 8px;
+}
+
+.tabBtn {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &:hover {
+        background-color: var(--bg-surface);
+        color: var(--text-primary);
+    }
+
+    &.activeTab {
+        background-color: var(--accent-primary);
+        color: #fff;
+
+        .badge {
+            background-color: #fff;
+            color: var(--accent-primary);
+        }
+    }
+}
+
+.badge {
+    background-color: var(--bg-surface-dark, #ccc);
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+}
+
+.listContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.emptyMessage {
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 40px;
+    font-size: 1.1rem;
+    background-color: var(--bg-surface);
+    border-radius: 12px;
+}
+
+.requestsList {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.requestItem {
+    background-color: var(--bg-surface);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid var(--bg-surface-light);
+}
+
+.tempData p {
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}

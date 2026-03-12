@@ -1,0 +1,155 @@
+@use "./../../../../assets/styles/variables" as *;
+@use "./../../../../assets/styles/mixins" as *;
+
+.card {
+    background-color: var(--bg-surface);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid var(--bg-surface-light);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.skeletonCard {
+    background-color: var(--bg-surface);
+    border-radius: 12px;
+    padding: 30px 20px;
+    text-align: center;
+    color: var(--text-secondary);
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.6;
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    h4 {
+        margin: 0 0 4px 0;
+        font-size: 1.1rem;
+        color: var(--text-primary);
+    }
+
+    .date {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+    }
+}
+
+.badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.statusPending {
+    background-color: #fff3cd;
+    color: #856404;
+}
+.statusAccepted {
+    background-color: #d4edda;
+    color: #155724;
+}
+.statusDeclined {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.targetLink {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+
+    a {
+        color: var(--accent-primary);
+        text-decoration: none;
+        font-weight: 500;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.messageBlock {
+    background-color: var(--bg-surface-light);
+    padding: 16px;
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-primary);
+
+    p {
+        margin: 0;
+        font-size: 1rem;
+        color: var(--text-primary);
+        font-style: italic;
+    }
+}
+
+.contactsBlock {
+    background-color: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    padding: 16px;
+    border-radius: 8px;
+
+    h5 {
+        margin: 0 0 12px 0;
+        color: #166534;
+        font-size: 1rem;
+    }
+
+    p {
+        margin: 0 0 8px 0;
+        color: #15803d;
+        font-size: 0.95rem;
+        font-weight: 500;
+
+        span {
+            font-weight: 700;
+            color: #166534;
+        }
+
+        &:last-child {
+            margin: 0;
+        }
+    }
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+    justify-content: flex-end;
+}
