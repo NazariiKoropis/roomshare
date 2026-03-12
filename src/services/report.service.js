@@ -14,7 +14,7 @@ export const createReport = async (data) => {
         return newReportRef.key
 
     } catch (error) {
-        console.log("Error creating report! ", error)
+        console.log('Помилка при створенні скарги!', error)
     }
 }
 

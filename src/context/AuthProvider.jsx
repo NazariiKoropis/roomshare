@@ -19,7 +19,7 @@ function AuthProvider({ children }) {
         try {
           role = await getUserRoleById(user.uid)
         } catch (err) {
-          console.error('Failed to load role for user', err)
+          console.error('Не вдалося завантажити роль користувача', err)
         }
         setUserRole(role || 'user')
         setCurrentUser(user)

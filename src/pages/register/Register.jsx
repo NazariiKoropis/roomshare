@@ -66,7 +66,7 @@ function Register() {
     const newErrors = {}
 
     if (!sanitizedData.email.includes('@')) {
-      newErrors.email = 'Введіть коректний email'
+      newErrors.email = 'Введіть коректну електронну пошту'
     }
 
     if (sanitizedData.password.length < 6) {
@@ -156,7 +156,7 @@ function Register() {
                   width="100"
                   radius="9"
                   color="var(--accent-primary)"
-                  ariaLabel="three-dots-loading"
+                  ariaLabel="Завантаження"
                   wrapperStyle={{ margin: '20px' }}
                   wrapperClass="custom-loader"
                   visible={true}

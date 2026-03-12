@@ -12,19 +12,19 @@ import { auth, database } from './../firebase/firebase'
 const mapAuthCodeToMessage = (errorCode) => {
     switch (errorCode) {
         case 'auth/email-already-in-use':
-            return 'Цей email вже використовується.'
+            return 'Ця електронна пошта вже використовується.'
         case 'auth/invalid-email':
-            return 'Некоректний формат email.'
+            return 'Некоректний формат електронної пошти.'
         case 'auth/user-not-found':
         case 'auth/wrong-password':
         case 'auth/invalid-credential':
-            return 'Невірний email або пароль.'
+            return 'Невірна електронна пошта або пароль.'
         case 'auth/weak-password':
             return 'Пароль занадто слабкий (мінімум 6 символів).'
         case 'auth/too-many-requests':
             return 'Забагато спроб. Спробуйте пізніше.'
         default:
-            console.error('Unhandled Auth Error:', errorCode)
+            console.error('Необроблена помилка автентифікації:', errorCode)
             return 'Сталася помилка. Спробуйте ще раз.'
     }
 }
@@ -78,7 +78,7 @@ export const register = async (userData) => {
 
         return { user, error: null }
     } catch (error) {
-        console.error('Signup Error:', error)
+        console.error('Помилка реєстрації:', error)
         return { user: null, error: mapAuthCodeToMessage(error.code) }
     }
 }

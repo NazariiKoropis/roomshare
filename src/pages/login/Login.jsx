@@ -38,7 +38,7 @@ function Login() {
 
     const newErrors = {}
     if (!formData.email.includes('@')) {
-      newErrors.email = 'Введіть коректний email'
+      newErrors.email = 'Введіть коректну електронну пошту'
     }
     if (formData.password.length < 6) {
       newErrors.password = 'Пароль має бути не менше 6 символів'
@@ -61,7 +61,7 @@ function Login() {
         const role = await getUserRoleById(user.uid)
         navigate(role ? `/${role}` : '/')
       } catch (err) {
-        console.error('Could not fetch role on login, sending to home', err)
+        console.error('Не вдалося отримати роль під час входу, повертаю на головну', err)
         navigate('/')
       }
     }
@@ -109,7 +109,7 @@ function Login() {
                   width="100"
                   radius="9"
                   color="var(--accent-primary)"
-                  ariaLabel="three-dots-loading"
+                  ariaLabel="Завантаження"
                   wrapperStyle={{ margin: '20px' }}
                   wrapperClass="custom-loader"
                   visible={true}
@@ -124,7 +124,7 @@ function Login() {
                   value={formData.email}
                   onChange={handleChange}
                   error={errors.email}
-                  placeholder="Введіть ваш email"
+                  placeholder="Введіть вашу електронну пошту"
                 />
 
                 <Input
@@ -155,7 +155,7 @@ function Login() {
                   variant="primary"
                   fullWidth
                 >
-                  test admin
+                  Тест: адмін
                 </Button>
 
                 <Button
@@ -164,7 +164,7 @@ function Login() {
                   variant="primary"
                   fullWidth
                 >
-                  test user
+                  Тест: користувач
                 </Button>
 
                 <Button type="submit" variant="primary" fullWidth>

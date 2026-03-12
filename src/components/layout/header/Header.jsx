@@ -84,7 +84,7 @@ function Header() {
             <button
               onClick={toggleTheme}
               className={styles.themeToggle}
-              aria-label="Toggle theme"
+              aria-label="Перемкнути тему"
             >
               {theme === 'light' ? '🌙' : '☀️'}
             </button>
@@ -106,7 +106,7 @@ function Header() {
                   buttonStyles[`button--primary`],
                 )}
               >
-                Login
+                Увійти
               </NavLink>
             )}
           </div>
@@ -117,7 +117,7 @@ function Header() {
               isOpenBurger && styles[`burgerBtn--active`],
             )}
             onClick={handleBurgerMenu}
-            aria-label="Toggle menu"
+            aria-label="Перемкнути меню"
           >
             <span></span>
             <span></span>
@@ -152,7 +152,7 @@ function Header() {
           <button
             onClick={toggleTheme}
             className={styles.themeToggle}
-            aria-label="Toggle theme"
+            aria-label="Перемкнути тему"
           >
             {theme === 'light' ? '🌙' : '☀️'}
           </button>
@@ -178,7 +178,7 @@ function Header() {
                 buttonStyles['button-fullwidth'],
               )}
             >
-              Login
+              Увійти
             </NavLink>
           )}
         </div>

@@ -16,7 +16,7 @@ function ProtectedRoute({ allowedRoles = [], children }) {
         width="80"
         radius="9"
         color="var(--accent-primary)"
-        ariaLabel="three-dots-loading"
+        ariaLabel="Завантаження"
         wrapperStyle={{ margin: '20px' }}
         wrapperClass="custom-loader"
         visible={true}
@@ -35,7 +35,7 @@ function ProtectedRoute({ allowedRoles = [], children }) {
         width="80"
         radius="9"
         color="var(--accent-primary)"
-        ariaLabel="three-dots-loading"
+        ariaLabel="Завантаження"
         wrapperStyle={{ margin: '20px' }}
         wrapperClass="custom-loader"
         visible={true}
@@ -45,7 +45,7 @@ function ProtectedRoute({ allowedRoles = [], children }) {
 
   if (allowedRoles.length > 0 && !allowedRoles.includes(userRole)) {
     console.warn(
-      `Access Denied. User role: ${userRole}, Required: ${allowedRoles}`,
+      `Доступ заборонено. Роль користувача: ${userRole}, Потрібно: ${allowedRoles}`,
     )
     return <Navigate to="/" replace />
   }

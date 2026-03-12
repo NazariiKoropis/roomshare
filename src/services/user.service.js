@@ -15,7 +15,7 @@ export const getUserById = async (id) => {
         }
 
     } catch (error) {
-        console.log('Error fetch data user by id', error)
+        console.log('Помилка отримання даних користувача за id', error)
     }
 }
 
@@ -31,7 +31,7 @@ export const getUserDisplayNameById = async (id) => {
         }
 
     } catch (error) {
-        console.log('Error fetch data user by id', error)
+        console.log('Помилка отримання даних користувача за id', error)
     }
 }
 
@@ -47,7 +47,7 @@ export const getUserRoleById = async (id) => {
             return 'user';
         }
     } catch (error) {
-        console.log('Error fetch data role by id', error);
+        console.log('Помилка отримання ролі користувача за id', error);
         return 'user';
     }
 }
@@ -63,7 +63,7 @@ export const getUserContactsById = async (id) => {
             return {}
 
     } catch (error) {
-        console.log("Error fetching users contact data: ", error)
+        console.log('Помилка отримання контактних даних користувача:', error)
         return {}
     }
 }
@@ -82,7 +82,7 @@ export const setUserNewData = async (id, data) => {
 
         return true;
     } catch (error) {
-        console.error("Error updating user data: ", error);
+        console.error('Помилка оновлення даних користувача:', error);
         return false;
     }
 }

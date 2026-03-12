@@ -26,7 +26,7 @@ function Teaser() {
             width="100"
             radius="9"
             color="var(--accent-primary)"
-            ariaLabel="three-dots-loading"
+            ariaLabel="Завантаження"
             wrapperStyle={{ margin: '20px' }}
             wrapperClass="custom-loader"
             visible={true}
@@ -39,7 +39,7 @@ function Teaser() {
   return (
     <section className={styles.teaserWrapper}>
       <Container>
-        <h2 className={styles.teaserTitle}>Teaser</h2>
+        <h2 className={styles.teaserTitle}>Останні оголошення</h2>
 
         <ul className={styles.teaserRooms}>
           {data.slice(0, 3).map((room) => (

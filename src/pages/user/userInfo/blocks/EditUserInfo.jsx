@@ -4,10 +4,10 @@ import Button from '../../../../components/ui/button/Button'
 import Input from './../../../../components/ui/input/Input'
 
 //react
-import { useState } from 'react' // removed useEffect, wasn't used
+import { useState } from 'react' // useEffect прибрано, не використовувався
 
 //services
-import { setUserNewData } from '../../../../services/user.service' // IMPORT THIS
+import { setUserNewData } from '../../../../services/user.service' // імпорт сервісу
 
 function EditUserInfo({ isOpen, onClose, userId, onUpdateSuccess }) {
   const [newNumber, setNewNumber] = useState('')
@@ -121,7 +121,7 @@ function EditUserInfo({ isOpen, onClose, userId, onUpdateSuccess }) {
         />
 
         <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Збереження...' : 'Обновити'}
+          {isSubmitting ? 'Збереження...' : 'Оновити'}
         </Button>
       </form>
     </Modal>

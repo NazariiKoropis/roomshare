@@ -45,7 +45,7 @@ export const getPeopleCards = async () => {
         return peopleCards;
 
     } catch (error) {
-        console.error("Error fetching people cards with user data:", error);
+        console.error('Помилка отримання анкет із даними користувачів:', error);
         return [];
     }
 }
@@ -69,7 +69,7 @@ export const getAllCities = async () => {
 
         return Array.from(citySet).sort();
     } catch (error) {
-        console.log("Error fetching data from server: ", error);
+        console.log('Помилка отримання даних із сервера:', error);
         return [];
     }
 }
@@ -107,7 +107,7 @@ export const getPeopleCardById = async (id) => {
         };
 
     } catch (error) {
-        console.error(`Error fetching resume ${id}:`, error);
+        console.error(`Помилка отримання анкети ${id}:`, error);
         return null;
     }
 }

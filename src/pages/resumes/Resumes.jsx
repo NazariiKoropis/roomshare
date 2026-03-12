@@ -69,7 +69,7 @@ function Resumes() {
             width="100"
             radius="9"
             color="var(--accent-primary)"
-            ariaLabel="three-dots-loading"
+            ariaLabel="Завантаження"
             visible={true}
           />
         </div>

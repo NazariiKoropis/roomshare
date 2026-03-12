@@ -23,7 +23,7 @@ export const getRoomCards = async () => {
 
         return finalData
     } catch (error) {
-        console.log("Error fetching rooms data for cards", error)
+        console.log('Помилка отримання даних кімнат для карток', error)
     }
 }
 
@@ -46,7 +46,7 @@ export const getAllCities = async () => {
         return Array.from(citySet).sort();
 
     } catch (error) {
-        console.error('Error fetching cities from database:', error)
+        console.error('Помилка отримання міст з бази даних:', error)
         return []
     }
 }
@@ -75,7 +75,7 @@ export const getAllAmenities = async () => {
 
     } catch (error) {
 
-        console.error('Error fetching amenities from database:', error)
+        console.error('Помилка отримання зручностей з бази даних:', error)
         return []
     }
 }
@@ -90,7 +90,7 @@ export const getRoomById = async (id) => {
         return snapshot.val()
 
     } catch (error) {
-        console.log("Error fetching data from server", error)
+        console.log('Помилка отримання даних із сервера', error)
         return
     }
 }

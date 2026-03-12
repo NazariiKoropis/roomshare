@@ -12,7 +12,7 @@ export const createRequest = async (data) => {
 
         return newRequestRef.key;
     } catch (error) {
-        console.error("Error creating request! ", error);
+        console.error('Помилка при створенні заявки!', error);
     }
 }
 
