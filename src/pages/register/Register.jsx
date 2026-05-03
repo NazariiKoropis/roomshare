@@ -113,22 +113,6 @@ function Register() {
     }
   }
 
-  const handleFillTestData = () => {
-    setFormData({
-      email: 'testuser@gmail.com',
-      password: 'password123',
-      confirmPassword: 'password123',
-      displayName: '',
-      firstName: 'Василь',
-      lastName: 'Крутий',
-      gender: 'male',
-      phone: '+380991234567',
-      date: '1995-05-15',
-      whatsapp: '+380991234567',
-    })
-    setErrors({})
-    setAuthError('')
-  }
 
   return (
     <AnimatedPage>
@@ -271,26 +255,9 @@ function Register() {
                     {authError}
                   </div>
                 )}
-
-                <div
-                  style={{ display: 'flex', gap: '16px', marginTop: '16px' }}
-                >
-                  <Button
-                    type="button"
-                    onClick={handleFillTestData}
-                    fullWidth
-                    style={{
-                      backgroundColor: 'var(--bg-surface-light)',
-                      color: 'var(--text-primary)',
-                    }}
-                  >
-                    🛠 Заповнити
-                  </Button>
-
                   <Button type="submit" variant="primary" fullWidth>
                     Зареєструватися
                   </Button>
-                </div>
               </form>
             )}
 
